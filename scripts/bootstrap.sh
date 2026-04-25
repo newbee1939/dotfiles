@@ -7,13 +7,18 @@ ZSHRC_EXTRA_PATH="$REPO_ROOT/shell/.zshrc.extra.zsh"
 STARSHIP_SOURCE_PATH="$REPO_ROOT/config/starship/starship.toml"
 STARSHIP_TARGET_PATH="$HOME/.config/starship.toml"
 ZSHRC_PATH="$HOME/.zshrc"
-ZSHRC_MARKER='source "$HOME/work/dotfiles/shell/.zshrc.extra.zsh"'
+ZSHRC_MARKER="source \"$ZSHRC_EXTRA_PATH\""
 GITCONFIG_TEMPLATE_PATH="$REPO_ROOT/config/git/.gitconfig.template"
 GITCONFIG_PATH="$HOME/.gitconfig"
 GITCONFIG_LOCAL_PATH="$HOME/.gitconfig.local"
 
 if ! command -v brew >/dev/null 2>&1; then
   echo "Homebrew is not installed. Install it first: https://brew.sh/"
+  exit 1
+fi
+
+if [ ! -f "$ZSHRC_EXTRA_PATH" ]; then
+  echo "Missing file: $ZSHRC_EXTRA_PATH"
   exit 1
 fi
 
