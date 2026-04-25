@@ -43,8 +43,6 @@ else
   echo "$ZSHRC_PATH already includes dotfiles config"
 fi
 
-chmod +x "$REPO_ROOT/scripts/install-vscode-extensions.sh"
-
 cp "$GITCONFIG_TEMPLATE_PATH" "$GITCONFIG_PATH"
 if [ ! -f "$GITCONFIG_LOCAL_PATH" ]; then
   echo "Creating $GITCONFIG_LOCAL_PATH"
