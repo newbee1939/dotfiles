@@ -1,0 +1,18 @@
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[✗](bold red)"
+
+[git_branch]
+symbol = "🌱 "
+style = "bold #b8d200"
+
+[[battery.display]]
+threshold = 20
+style = "bold red"
+
+[battery]
+discharging_symbol = "😞 "
+
+[git_status]
+modified = "📝"
+staged = "[++($count)](green)"
