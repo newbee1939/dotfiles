@@ -17,3 +17,5 @@
 - MyConvenientDevEnvironmentSettings.mdを全て移行 -> ファイル削除
 - [ターミナルに引きこもる極意](https://www.docswell.com/s/mozumasu/ZN71M7-2026-04-02-dotfiles#p1)
 - [好きなdotfiles発表ドラゴン](https://www.docswell.com/s/mozumasu/5DWPG4-dotfiles-dragon)
+- [CLIでもコミットメッセージはAIに書いてもらえる (cz-git,czg)](https://zenn.dev/mozumasu/articles/mozumasu-cz-git)
+- [爆速CLI入門 ~最初に知りたかったTips~](https://zenn.dev/mozumasu/articles/mozumasu-cli-beginner)
