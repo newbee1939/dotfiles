@@ -64,7 +64,7 @@
   "editor.guides.bracketPairs": "active",
   // スペースの可視化
   "editor.renderWhitespace": "boundary",
-  // save時に不要なスペースを削除
+  // 保存時に不要なスペースを削除
   "files.trimTrailingWhitespace": true,
   // 不要な効果音をOFFに
   "editor.accessibilitySupport": "off",
