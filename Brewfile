@@ -4,7 +4,7 @@ brew "k9s"
 brew "gh"
 brew "git"
 
-cask "cursor"
+cask "cursor" # IDE
 cask "ghostty" # ターミナル
 cask "raycast"
 cask "sequel-ace"
