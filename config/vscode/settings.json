@@ -73,5 +73,5 @@
   // gitリポジトリを同期する前に確認しないようにする
   "git.confirmSync": false,
   // PR作成時に、ローカルブランチをリモート（GitHub）に自動的にプッシュする
-  "githubPullRequests.pushBranch": "always",
+  "githubPullRequests.pushBranch": "always"
 }
