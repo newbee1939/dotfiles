@@ -4,6 +4,7 @@ brew "k9s"
 brew "gh"
 brew "git"
 
+cask "cursor"
 cask "raycast"
 cask "sequel-ace"
 cask "docker"
