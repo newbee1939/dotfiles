@@ -22,6 +22,11 @@ brew bundle --file="$BREWFILE_PATH"
 
 mkdir -p "$HOME/.config"
 
+if [ -d "$STARSHIP_TARGET_PATH" ] && [ ! -L "$STARSHIP_TARGET_PATH" ]; then
+  backup_path="$STARSHIP_TARGET_PATH.bak.$(date +%Y%m%d%H%M%S)"
+  mv "$STARSHIP_TARGET_PATH" "$backup_path"
+  echo "Backed up existing directory: $backup_path"
+fi
 rm -f "$STARSHIP_TARGET_PATH"
 ln -s "$STARSHIP_SOURCE_PATH" "$STARSHIP_TARGET_PATH"
 echo "Linked starship config: $STARSHIP_TARGET_PATH"
