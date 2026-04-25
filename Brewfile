@@ -1,8 +1,8 @@
 brew "jq"
-brew "starship"
 brew "k9s"
 brew "gh"
 brew "git"
+brew "starship" # ターミナルのカスタマイズ
 
 cask "cursor" # IDE
 cask "ghostty" # ターミナル
