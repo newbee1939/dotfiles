@@ -1,0 +1,77 @@
+{
+  // 区切り文字の設定から - を除外
+  "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
+  "cSpell.userWords": [
+    "astro",
+    "biomejs",
+    "browsi",
+    "browsitag",
+    "clearfix",
+    "cloudrun",
+    "cloudscheduler",
+    "cloudsql",
+    "codegen",
+    "datetime",
+    "deno",
+    "dprint",
+    "envsubst",
+    "esbenp",
+    "fastify",
+    "fluxtag",
+    "fuga",
+    "gcloud",
+    "googletag",
+    "hoge",
+    "jotai",
+    "kintone",
+    "kustomize",
+    "laravel",
+    "luxon",
+    "marp",
+    "memorystore",
+    "nestjs",
+    "newbee",
+    "Println",
+    "qiita",
+    "readdy",
+    "testid",
+    "thomaseizinger",
+    "traefik",
+    "tsumiki",
+    "urql",
+    "zenn"
+  ],
+  "window.zoomLevel": 2,
+  // VSCodeの不要な要素を非表示
+  "workbench.editor.showTabs": "none",
+  "editor.minimap.enabled": false,
+  "workbench.statusBar.visible": false,
+  "editor.glyphMargin": false,
+  "editor.folding": false,
+  "breadcrumbs.symbolPath": "off",
+  "workbench.activityBar.location": "top",
+  // VSCodeのテーマ
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "GitHub Dark Default",
+  // プロダクトアイコン
+  "workbench.productIconTheme": "fluent-icons",
+  // エクスプローラーのインデント
+  "workbench.tree.indent": 24,
+  // タブ数制限
+  "workbench.editor.limit.enabled": true,
+  "workbench.editor.limit.value": 4,
+  // ブラケットペアの範囲を可視化
+  "editor.guides.bracketPairs": "active",
+  // スペースの可視化
+  "editor.renderWhitespace": "boundary",
+  // save時に不要なスペースを削除
+  "files.trimTrailingWhitespace": true,
+  // 不要な効果音をOFFに
+  "editor.accessibilitySupport": "off",
+  // ファイル末尾に自動的に改行を追加
+  "files.insertFinalNewline": true,
+  // gitリポジトリを同期する前に確認しないようにする
+  "git.confirmSync": false,
+  // PR作成時に、ローカルブランチをリモート（GitHub）に自動的にプッシュする
+  "githubPullRequests.pushBranch": "always",
+}
