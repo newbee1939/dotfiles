@@ -5,6 +5,7 @@ brew "gh"
 brew "git"
 
 cask "cursor"
+cask "ghostty"
 cask "raycast"
 cask "sequel-ace"
 cask "docker"
