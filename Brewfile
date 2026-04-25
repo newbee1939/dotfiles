@@ -1,0 +1,10 @@
+brew "jq"
+brew "starship"
+brew "k9s"
+brew "gh"
+brew "git"
+
+cask "raycast"
+cask "sequel-ace"
+cask "docker"
+cask "flux"
