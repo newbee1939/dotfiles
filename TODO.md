@@ -21,3 +21,5 @@
 - [CLIでもコミットメッセージはAIに書いてもらえる (cz-git,czg)](https://zenn.dev/mozumasu/articles/mozumasu-cz-git)
 - [爆速CLI入門 ~最初に知りたかったTips~](https://zenn.dev/mozumasu/articles/mozumasu-cli-beginner)
 - [Claude Codeで日常のタスクを45個自動化した東大院生の全記録](https://zenn.dev/shunya_sudo/articles/claude-code-45-automation-tasks)
+- Vim, NeoVim
+    - エディタを開かない
