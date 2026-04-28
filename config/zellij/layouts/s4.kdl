@@ -1,0 +1,13 @@
+// 画面を4分割
+layout {
+    pane split_direction="vertical" {
+        pane split_direction="horizontal" {
+            pane
+            pane
+        }
+        pane split_direction="horizontal" {
+            pane
+            pane
+        }
+    }
+}
