@@ -7,6 +7,8 @@
     - ターミナル分割
 - Claude Codeのインストール手順・設定を追加
     - https://code.claude.com/docs/ja/quickstart#native-install-recommended
+    - https://claude.ai/upgrade
+        - 契約する？
 - リポジトリ全体で、AIにおすすめの設定を相談
 - Claude Codeの設定ファイルも管理したい（e.g. Skillsなど）
     - 各種連携
