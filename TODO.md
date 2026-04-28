@@ -14,6 +14,8 @@
     - MCP
     - ブラウザやSlackなどの操作も自動化
 - dotfilesの一般的な管理方法や他の人の事例を調べる
+- ベンダーロックインを意識的に薄める設計にする
+    - 特にAI周り
 - Raycastの設定ファイルを追加
 - MyConvenientDevEnvironmentSettings.mdを全て移行 -> ファイル削除
 - [ターミナルに引きこもる極意](https://www.docswell.com/s/mozumasu/ZN71M7-2026-04-02-dotfiles#p1)
