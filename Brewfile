@@ -9,5 +9,5 @@ cask "cursor" # IDE
 cask "ghostty" # ターミナル
 cask "raycast"
 cask "sequel-ace"
-cask "docker"
-cask "flux"
+cask "docker-desktop"
+cask "flux-app"
