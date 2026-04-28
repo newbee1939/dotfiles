@@ -8,6 +8,10 @@ STARSHIP_SOURCE_PATH="$REPO_ROOT/config/starship/starship.toml"
 STARSHIP_TARGET_PATH="$HOME/.config/starship.toml"
 ZELLIJ_SOURCE_PATH_S4="$REPO_ROOT/config/zellij/layouts/s4.kdl" # 画面を4分割
 ZELLIJ_TARGET_PATH_S4="$HOME/.config/zellij/layouts/s4.kdl"
+# Ghostty設定の追加
+GHOSTTY_SOURCE_PATH="$REPO_ROOT/config/ghostty/config"
+GHOSTTY_TARGET_PATH="$HOME/.config/ghostty/config"
+
 ZSHRC_PATH="$HOME/.zshrc"
 ZSHRC_MARKER="source \"$ZSHRC_EXTRA_PATH\""
 GITCONFIG_TEMPLATE_PATH="$REPO_ROOT/config/git/.gitconfig.template"
@@ -58,6 +62,17 @@ rm -f "$ZELLIJ_TARGET_PATH_S4"
 mkdir -p "$(dirname "$ZELLIJ_TARGET_PATH_S4")"
 ln -s "$ZELLIJ_SOURCE_PATH_S4" "$ZELLIJ_TARGET_PATH_S4"
 echo "Linked Zellij config: $ZELLIJ_TARGET_PATH_S4"
+
+# Ghostty
+if [ -e "$GHOSTTY_TARGET_PATH" ] && [ ! -L "$GHOSTTY_TARGET_PATH" ]; then
+  backup_path="$GHOSTTY_TARGET_PATH.bak.$(date +%Y%m%d%H%M%S)"
+  mv "$GHOSTTY_TARGET_PATH" "$backup_path"
+  echo "Backed up existing Ghostty config: $backup_path"
+fi
+rm -f "$GHOSTTY_TARGET_PATH"
+mkdir -p "$(dirname "$GHOSTTY_TARGET_PATH")"
+ln -s "$GHOSTTY_SOURCE_PATH" "$GHOSTTY_TARGET_PATH"
+echo "Linked Ghostty config: $GHOSTTY_TARGET_PATH"
 
 touch "$ZSHRC_PATH"
 if ! grep -F "$ZSHRC_MARKER" "$ZSHRC_PATH" >/dev/null 2>&1; then
