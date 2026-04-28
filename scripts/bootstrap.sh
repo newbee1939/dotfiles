@@ -25,6 +25,14 @@ fi
 echo "Installing packages from Brewfile..."
 brew bundle --file="$BREWFILE_PATH"
 
+# Claude Codeのインストール
+if ! command -v claude >/dev/null 2>&1; then
+  echo "Installing Claude CLI..."
+  curl -fsSL https://claude.ai/install.sh | bash
+else
+  echo "Claude Code is already installed."
+fi
+
 mkdir -p "$HOME/.config"
 
 if [ -e "$STARSHIP_TARGET_PATH" ] && [ ! -L "$STARSHIP_TARGET_PATH" ]; then
