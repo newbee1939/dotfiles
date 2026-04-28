@@ -26,6 +26,7 @@ echo "Installing packages from Brewfile..."
 brew bundle --file="$BREWFILE_PATH"
 
 # Claude Codeのインストール
+# 参考: https://code.claude.com/docs/ja/quickstart#native-install-recommended
 if ! command -v claude >/dev/null 2>&1; then
   echo "Installing Claude CLI..."
   curl -fsSL https://claude.ai/install.sh | bash
