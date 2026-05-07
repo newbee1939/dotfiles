@@ -30,3 +30,4 @@
 - Macの掃除スクリプト
 - https://gemini.google.com/app/35869d4045c9e163?hl=ja
 - Hosts設定の自動化もできない？無ければ追記の方向で。SNSの遮断
+- "copy_command "pbcopy""
