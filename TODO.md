@@ -1,6 +1,8 @@
 - 最新の効率化ツールをあらためて調べる
 - 全てターミナルで仕事をする
     - スラックやブラウザも開かない
+- AeroSpace
+    - https://zenn.dev/mozumasu/articles/mozumasu-window-costomization
 - マウスを使わない
     - Vimなどの活用
 - 並行で複数の仕事に取り組む
@@ -31,3 +33,4 @@
 - https://gemini.google.com/app/35869d4045c9e163?hl=ja
 - Hosts設定の自動化もできない？無ければ追記の方向で。SNSの遮断
 - "copy_command "pbcopy""
+- デジタルデトックス用の設定
