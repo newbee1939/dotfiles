@@ -99,4 +99,33 @@ if [ ! -f "$GITCONFIG_LOCAL_PATH" ]; then
   echo "Created $GITCONFIG_LOCAL_PATH"
 fi
 
+# デジタルデトックス: /etc/hosts に集中を妨げるサイトを追記してブロック
+# 使い方: BLOCKED_SITES を編集して bootstrap.sh を再実行すれば反映される
+HOSTS_FILE="/etc/hosts"
+DETOX_BEGIN="# BEGIN DETOX"
+DETOX_END="# END DETOX"
+BLOCKED_SITES=(
+  twitter.com www.twitter.com
+  x.com www.x.com
+  youtube.com www.youtube.com m.youtube.com youtu.be
+  instagram.com www.instagram.com
+  facebook.com www.facebook.com m.facebook.com
+  reddit.com www.reddit.com old.reddit.com
+  tiktok.com www.tiktok.com
+)
+
+echo "Updating detox block in /etc/hosts (sudo required)..."
+if grep -q "$DETOX_BEGIN" "$HOSTS_FILE" 2>/dev/null; then
+  sudo sed -i '' "/$DETOX_BEGIN/,/$DETOX_END/d" "$HOSTS_FILE"
+fi
+{
+  echo ""
+  echo "$DETOX_BEGIN"
+  for site in "${BLOCKED_SITES[@]}"; do
+    echo "0.0.0.0 $site"
+  done
+  echo "$DETOX_END"
+} | sudo tee -a "$HOSTS_FILE" >/dev/null
+echo "Detox block updated"
+
 echo "Bootstrap completed."
