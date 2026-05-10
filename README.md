@@ -43,3 +43,7 @@ while read -r extension; do cursor --install-extension "$extension"; done < conf
 ## 手動設定（未自動化）
 
 - `gh auth login` と SSH 鍵の生成/登録
+
+## 操作 Tips
+
+- **Claude Code のレスポンスをコピーしたい**: Zellij のスクロールモード (`Ctrl + S` で出入り) を使うと、入力欄に影響を与えず過去の出力を選択・コピーできる。
