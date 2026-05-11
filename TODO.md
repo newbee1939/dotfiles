@@ -12,7 +12,7 @@
     - https://claude.ai/upgrade
         - 契約する？
 - リポジトリ全体で、AIにおすすめの設定を相談
-- Claude Codeの設定ファイルも管理したい（e.g. Skillsなど）
+- Claude Code 機能拡張
     - 各種連携
     - CLI
     - MCP

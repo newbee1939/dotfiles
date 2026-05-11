@@ -11,6 +11,11 @@ ZELLIJ_TARGET_PATH_S4="$HOME/.config/zellij/layouts/s4.kdl"
 # Ghostty設定の追加
 GHOSTTY_SOURCE_PATH="$REPO_ROOT/config/ghostty/config"
 GHOSTTY_TARGET_PATH="$HOME/.config/ghostty/config"
+# Claude Code 設定の追加
+CLAUDE_CLAUDEMD_SOURCE_PATH="$REPO_ROOT/config/claude/CLAUDE.md"
+CLAUDE_CLAUDEMD_TARGET_PATH="$HOME/.claude/CLAUDE.md"
+CLAUDE_SETTINGS_SOURCE_PATH="$REPO_ROOT/config/claude/settings.json"
+CLAUDE_SETTINGS_TARGET_PATH="$HOME/.claude/settings.json"
 
 ZSHRC_PATH="$HOME/.zshrc"
 ZSHRC_MARKER="source \"$ZSHRC_EXTRA_PATH\""
@@ -73,6 +78,27 @@ rm -f "$GHOSTTY_TARGET_PATH"
 mkdir -p "$(dirname "$GHOSTTY_TARGET_PATH")"
 ln -s "$GHOSTTY_SOURCE_PATH" "$GHOSTTY_TARGET_PATH"
 echo "Linked Ghostty config: $GHOSTTY_TARGET_PATH"
+
+# Claude Code: CLAUDE.md
+mkdir -p "$HOME/.claude"
+if [ -e "$CLAUDE_CLAUDEMD_TARGET_PATH" ] && [ ! -L "$CLAUDE_CLAUDEMD_TARGET_PATH" ]; then
+  backup_path="$CLAUDE_CLAUDEMD_TARGET_PATH.bak.$(date +%Y%m%d%H%M%S)"
+  mv "$CLAUDE_CLAUDEMD_TARGET_PATH" "$backup_path"
+  echo "Backed up existing Claude CLAUDE.md: $backup_path"
+fi
+rm -f "$CLAUDE_CLAUDEMD_TARGET_PATH"
+ln -s "$CLAUDE_CLAUDEMD_SOURCE_PATH" "$CLAUDE_CLAUDEMD_TARGET_PATH"
+echo "Linked Claude CLAUDE.md: $CLAUDE_CLAUDEMD_TARGET_PATH"
+
+# Claude Code: settings.json
+if [ -e "$CLAUDE_SETTINGS_TARGET_PATH" ] && [ ! -L "$CLAUDE_SETTINGS_TARGET_PATH" ]; then
+  backup_path="$CLAUDE_SETTINGS_TARGET_PATH.bak.$(date +%Y%m%d%H%M%S)"
+  mv "$CLAUDE_SETTINGS_TARGET_PATH" "$backup_path"
+  echo "Backed up existing Claude settings.json: $backup_path"
+fi
+rm -f "$CLAUDE_SETTINGS_TARGET_PATH"
+ln -s "$CLAUDE_SETTINGS_SOURCE_PATH" "$CLAUDE_SETTINGS_TARGET_PATH"
+echo "Linked Claude settings.json: $CLAUDE_SETTINGS_TARGET_PATH"
 
 touch "$ZSHRC_PATH"
 if ! grep -F "$ZSHRC_MARKER" "$ZSHRC_PATH" >/dev/null 2>&1; then
