@@ -33,6 +33,9 @@ if [ ! -f "$ZSHRC_EXTRA_PATH" ]; then
   exit 1
 fi
 
+echo "Updating Homebrew..."
+brew update
+
 echo "Installing packages from Brewfile..."
 brew bundle --file="$BREWFILE_PATH"
 

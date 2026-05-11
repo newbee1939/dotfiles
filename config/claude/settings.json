@@ -1,3 +1,35 @@
 {
-  "model": "opus"
+  "model": "opus",
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch",
+      "Bash(gh pr view *)",
+      "Bash(gh pr list *)",
+      "Bash(gh issue view *)",
+      "Bash(gh issue list *)",
+      "Bash(gh repo view *)",
+      "Bash(gh run view *)",
+      "Bash(gh run list *)",
+      "Bash(brew list *)",
+      "Bash(brew info *)",
+      "Bash(brew search *)",
+      "Bash(brew outdated)",
+      "Bash(terraform plan *)",
+      "Bash(terraform validate *)",
+      "Bash(terraform show *)",
+      "Bash(terraform output *)",
+      "Bash(npm list *)",
+      "Bash(npm view *)",
+      "Bash(npm outdated *)",
+      "Bash(go version)",
+      "Bash(go list *)",
+      "Bash(go env *)",
+      "Bash(go doc *)",
+      "Bash(docker ps *)",
+      "Bash(docker images *)",
+      "Bash(docker logs *)",
+      "Bash(docker inspect *)"
+    ]
+  }
 }
