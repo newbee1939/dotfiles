@@ -5,6 +5,7 @@
 - いかにClaude Codeの自立性を高めるか
 - .claudeignore
 - Claude Code context7
+- 仮説を建ててからClaudeに聞くのを強制
 - hostsのパスワードを伸ばす
     - 解除しづらくする
 - Claude Code: トークン制限
@@ -13,6 +14,7 @@
     - rebaseするのか、mergeするのかなど
     - 作法まわり
     - Gitの履歴をきれいに保たせる
+    - 品の良いgit履歴の作り方
 - AeroSpace
     - https://zenn.dev/mozumasu/articles/mozumasu-window-costomization
 - ベンダーロックの排除
