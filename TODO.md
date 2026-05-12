@@ -6,6 +6,7 @@
 - Claude Code context7
 - AeroSpace
     - https://zenn.dev/mozumasu/articles/mozumasu-window-costomization
+- ベンダーロックの排除
 - マウスを使わない
     - Vimなどの活用
 - 並行で複数の仕事に取り組む
