@@ -1,6 +1,9 @@
 - 最新の効率化ツールをあらためて調べる
 - 全てターミナルで仕事をする
     - スラックやブラウザも開かない
+- Claude: Agent View
+- いかにClaude Codeの自立性を高めるか
+- Claude Code context7
 - AeroSpace
     - https://zenn.dev/mozumasu/articles/mozumasu-window-costomization
 - マウスを使わない
