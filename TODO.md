@@ -3,7 +3,16 @@
     - スラックやブラウザも開かない
 - Claude: Agent View
 - いかにClaude Codeの自立性を高めるか
+- .claudeignore
 - Claude Code context7
+- hostsのパスワードを伸ばす
+    - 解除しづらくする
+- Claude Code: トークン制限
+- Google Cloud: skills
+- git worktreeを使うのと、gitの扱いについてCLAUDE.md
+    - rebaseするのか、mergeするのかなど
+    - 作法まわり
+    - Gitの履歴をきれいに保たせる
 - AeroSpace
     - https://zenn.dev/mozumasu/articles/mozumasu-window-costomization
 - ベンダーロックの排除
