@@ -48,6 +48,18 @@ while read -r extension; do cursor --install-extension "$extension"; done < conf
 
 - **Claude Code のレスポンスをコピーしたい**: Zellij のスクロールモード (`Ctrl + S` で出入り) を使うと、入力欄に影響を与えず過去の出力を選択・コピーできる。
 
+### Claude Code の利用枠を使い切らないために
+
+Claude Code の利用上限は契約プラン (Pro / Max) の枠で決まり、使うモデルや会話の長さで消費速度が変わる。すぐ `limit` になる場合の対策（効果が大きい順）:
+
+1. **モデルを使い分ける**: 既定は `config/claude/settings.json` の `model: sonnet`。重い設計・難しいデバッグだけ `cc-opus`、雑用は `cc-haiku`。Opus は Sonnet より利用枠を桁違いに速く消費する。
+2. **タスクの区切りで `/clear`**。続けるなら `/compact`。長い会話は毎ターン全文が再送されるため、後の発言ほど高くつく。
+3. **`.claudeignore`** で巨大ディレクトリや生成物を読ませない（プロジェクトごとに置く）。
+4. ファイルを丸ごと貼らない。Claude Code は必要なら自分で読むので `path:行番号` で指す。
+5. `/status` で「5 時間枠」と「週次枠」のどちらに当たっているか確認できる。
+
+参考: [Claude Code costs (公式ドキュメント)](https://code.claude.com/docs/en/costs)
+
 ## 並行作業 (git worktree)
 
 同じリポジトリで複数のブランチ作業を並行させたいときは `git worktree` を使う。`.git` を共有しつつ別ディレクトリに独立した作業ツリーを作る Git 標準機能で、複数の Claude Code セッションを互いに干渉させずに走らせられる。

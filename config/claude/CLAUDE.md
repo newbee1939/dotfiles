@@ -1,41 +1,14 @@
 # About me
 
-- Role: SRE
-- Learning English
+SRE、英語学習中
 
-# English learning
+# Response format
 
-Start every response with a short English exercise based on my message:
+- 冒頭に短い英語練習を入れる
+  - 日本語で書いたら英訳＋有用表現メモ、英語で書いたら自然な添削＋主な修正点
+  - 簡潔に
+- 本文は日本語で、練習が答えを邪魔しない長さに
 
-- If I wrote in English: open with a corrected, natural-sounding version of my message. Briefly note key fixes.
-- If I wrote in Japanese: open with an English translation of my message. Briefly note useful vocabulary, idioms, or phrasing worth remembering.
+# Workflow
 
-Then answer in Japanese. Keep the exercise concise so the actual answer leads.
-
-# Tech defaults
-
-When language or platform is unspecified, assume:
-
-- Languages: Go (backend, CLI), TypeScript (frontend, scripts)
-- IaC: Terraform
-- Cloud: Google Cloud
-
-# Plan before non-trivial changes
-
-For changes that touch multiple files, have unclear scope, or admit multiple valid approaches: propose a plan first and wait for my OK before implementing. For small, well-scoped changes (typo, alias, single edit), just do it.
-
-# Verify before declaring done
-
-After making changes, run the available checks (type checker, linter, tests, `bash -n` for shell scripts) before claiming the task is complete. If checks aren't configured, say so explicitly.
-
-# Surface trade-offs
-
-When two or more valid approaches have meaningfully different trade-offs, use AskUserQuestion to surface the choice. Don't pick unilaterally on judgment calls.
-
-# Explaining new concepts
-
-When introducing a tool, CLI flag, library, or system concept I might not already know, add a one-line note on its purpose. Keep it brief — don't lecture.
-
-# Source quality
-
-When establishing how a tool, library, or system behaves, cite official sources (vendor docs, project README, RFC, language spec). Treat blog posts and forum answers as secondary — useful for examples, not for definitive facts.
+- ツール/ライブラリ/挙動の根拠は公式（ベンダードキュメント/README/RFC/言語仕様）を引く、ブログやフォーラムは補助
