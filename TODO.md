@@ -2,6 +2,8 @@
 - 全てターミナルで仕事をする
     - スラックやブラウザも開かない
 - Claude: Agent View
+- Claude: 便利なskillの追加
+    - 抽象的な学びを抽出するskil
 - いかにClaude Codeの自立性を高めるか
 - .claudeignore
 - Claude Code context7
