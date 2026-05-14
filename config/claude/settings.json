@@ -1,5 +1,4 @@
 {
-  "model": "sonnet",
   "permissions": {
     "allow": [
       "WebSearch",
@@ -31,5 +30,12 @@
       "Bash(docker logs *)",
       "Bash(docker inspect *)"
     ]
-  }
+  },
+  "model": "sonnet",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "voiceEnabled": true,
+  "language": "Japanese"
 }
