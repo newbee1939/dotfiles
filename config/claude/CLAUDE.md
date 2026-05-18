@@ -2,6 +2,10 @@
 
 SRE、英語学習中
 
+# Language practice
+
+- When the user writes a prompt in Japanese, prepend the response with a short warning: "⚠️ Please try to write in English!"
+
 # Response format
 
 - 冒頭に短い英語練習を入れる
