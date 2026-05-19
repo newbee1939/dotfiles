@@ -6,11 +6,8 @@
 - Claude: 便利なskillの追加
     - 抽象的な学びを抽出するskil
 - いかにClaude Codeの自立性を高めるか
-- .claudeignore
 - Claude Code context7
 - 仮説を建ててからClaudeに聞くのを強制
-- hostsのパスワードを伸ばす
-    - 解除しづらくする
 - Claude Code: トークン制限
 - Google Cloud: skills
 - git worktreeを使うのと、gitの扱いについてCLAUDE.md
@@ -49,4 +46,3 @@
     - エディタを開かない
 - Macの掃除スクリプト
 - https://gemini.google.com/app/35869d4045c9e163?hl=ja
-- "copy_command "pbcopy""

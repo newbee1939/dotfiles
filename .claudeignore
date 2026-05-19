@@ -1,0 +1,8 @@
+# Backup files created by bootstrap.sh
+*.bak
+*.bak.*
+
+# Binary / non-text assets
+*.png
+*.jpg
+*.ico

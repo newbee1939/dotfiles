@@ -141,6 +141,16 @@ BLOCKED_SITES=(
   facebook.com www.facebook.com m.facebook.com
   reddit.com www.reddit.com old.reddit.com
   tiktok.com www.tiktok.com
+  girlschannel.net www.girlschannel.net
+  yahoo.co.jp www.yahoo.co.jp news.yahoo.co.jp
+  b.hatena.ne.jp
+  twitch.tv www.twitch.tv
+  pinterest.com www.pinterest.com
+  nicovideo.jp www.nicovideo.jp
+  togetter.com www.togetter.com
+  5ch.net www.5ch.net 2ch.sc www.2ch.sc
+  abema.tv www.abema.tv
+  smartnews.com www.smartnews.com
 )
 
 echo "Updating detox block in /etc/hosts (sudo required)..."
