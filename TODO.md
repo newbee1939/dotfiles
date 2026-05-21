@@ -3,6 +3,7 @@
 - 全てターミナルで仕事をする
     - スラックやブラウザも開かない
 - Claude: Agent View
+- Checker Plus for Google Calendarをchrome拡張のリストに
 - Claude: 便利なskillの追加
     - 抽象的な学びを抽出するskil
 - いかにClaude Codeの自立性を高めるか
