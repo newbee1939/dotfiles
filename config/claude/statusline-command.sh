@@ -2,7 +2,7 @@
 # Claude Code statusLine command
 # 3-line layout:
 #   Line 1: 📂 ~/git/github.com/org/repo
-#   Line 2: 🐙 repo-name │ 🌿 main +2 ~3
+#   Line 2: 🐙 repo-name │ 🌿 main
 #   Line 3: 🧠 ████████░░░░░░░ 53% │ 💪 claude-sonnet-4-6
 
 input=$(cat)
@@ -21,26 +21,9 @@ short_cwd="${cwd/#$home/~}"
 git_root=$(git -C "$cwd" --no-optional-locks rev-parse --show-toplevel 2>/dev/null)
 branch=""
 repo_name=""
-diff_stat=""
 if [ -n "$git_root" ]; then
   branch=$(git -C "$cwd" --no-optional-locks rev-parse --abbrev-ref HEAD 2>/dev/null)
   repo_name=$(basename "$git_root")
-
-  # Count added (+) and modified (~) files from git status
-  added=0
-  modified=0
-  while IFS= read -r line; do
-    xy="${line:0:2}"
-    if [[ "$xy" == "??" || "$xy" == "A " || "$xy" == " A" ]]; then
-      (( added++ ))
-    else
-      (( modified++ ))
-    fi
-  done < <(git -C "$cwd" --no-optional-locks status --porcelain 2>/dev/null)
-
-  [ "$added" -gt 0 ]    && diff_stat="$diff_stat +$added"
-  [ "$modified" -gt 0 ] && diff_stat="$diff_stat ~$modified"
-  diff_stat="${diff_stat# }"  # trim leading space
 fi
 
 # Context progress bar (16 blocks wide)
@@ -58,16 +41,12 @@ fi
 line1=""
 [ -n "$short_cwd" ] && line1="$(printf '📂 \033[1;34m%s\033[0m' "$short_cwd")"
 
-# ── line 2: repo │ branch + diff ──────────────────────────────────────────────
+# ── line 2: repo │ branch ─────────────────────────────────────────────────────
 line2=""
 if [ -n "$repo_name" ]; then
   repo_part="$(printf '🐙 \033[1;36m%s\033[0m' "$repo_name")"
   if [ -n "$branch" ]; then
-    if [ -n "$diff_stat" ]; then
-      branch_part="$(printf '🌿 \033[1;32m%s\033[0m \033[0;33m%s\033[0m' "$branch" "$diff_stat")"
-    else
-      branch_part="$(printf '🌿 \033[1;32m%s\033[0m' "$branch")"
-    fi
+    branch_part="$(printf '🌿 \033[1;32m%s\033[0m' "$branch")"
     line2="${repo_part} $(printf '\033[0;37m│\033[0m') ${branch_part}"
   else
     line2="$repo_part"
