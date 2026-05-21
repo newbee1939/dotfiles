@@ -3,13 +3,14 @@
 # 3-line layout:
 #   Line 1: 📂 ~/git/github.com/org/repo
 #   Line 2: 🐙 repo-name │ 🌿 main
-#   Line 3: 🧠 ████████░░░░░░░ 53% │ 💪 claude-sonnet-4-6
+#   Line 3: ⏱ 5h: 42% │ 7d: 18% │ 💪 claude-sonnet-4-6
 
 input=$(cat)
 
 cwd=$(echo "$input"      | jq -r '.workspace.current_dir // .cwd // empty')
 model_id=$(echo "$input" | jq -r '.model.id // empty')
-used=$(echo "$input"     | jq -r '.context_window.used_percentage // empty')
+five_h=$(echo "$input"   | jq -r '.rate_limits.five_hour.used_percentage // empty')
+seven_d=$(echo "$input"  | jq -r '.rate_limits.seven_day.used_percentage // empty')
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -26,16 +27,17 @@ if [ -n "$git_root" ]; then
   repo_name=$(basename "$git_root")
 fi
 
-# Context progress bar (16 blocks wide)
-bar=""
-used_int=""
-if [ -n "$used" ]; then
-  used_int=$(printf '%.0f' "$used")
-  filled=$(( used_int * 16 / 100 ))
-  empty=$(( 16 - filled ))
-  for (( i=0; i<filled; i++ )); do bar="${bar}█"; done
-  for (( i=0; i<empty;  i++ )); do bar="${bar}░"; done
-fi
+# Rate limit formatting helper: colorize red if >= 80%
+# Usage: format_rate <int_value> <label>  → echoes colored string
+format_rate() {
+  local val_int="$1"
+  local label="$2"
+  if [ "$val_int" -ge 80 ]; then
+    printf '\033[1;31m%s: %d%%\033[0m' "$label" "$val_int"
+  else
+    printf '\033[1;37m%s: %d%%\033[0m' "$label" "$val_int"
+  fi
+}
 
 # ── line 1: directory ─────────────────────────────────────────────────────────
 line1=""
@@ -53,24 +55,32 @@ if [ -n "$repo_name" ]; then
   fi
 fi
 
-# ── line 3: context bar │ model ───────────────────────────────────────────────
+# ── line 3: rate limits │ model ───────────────────────────────────────────────
 line3=""
-ctx_part=""
-if [ -n "$bar" ] && [ -n "$used_int" ]; then
-  if [ "$used_int" -ge 80 ]; then
-    ctx_part="$(printf '🧠 \033[1;31m%s %d%%\033[0m' "$bar" "$used_int")"
-  else
-    ctx_part="$(printf '🧠 \033[0;37m%s\033[0m \033[1;37m%d%%\033[0m' "$bar" "$used_int")"
+rate_part=""
+
+five_h_int=""
+seven_d_int=""
+[ -n "$five_h" ]  && five_h_int=$(printf '%.0f' "$five_h")
+[ -n "$seven_d" ] && seven_d_int=$(printf '%.0f' "$seven_d")
+
+if [ -n "$five_h_int" ] || [ -n "$seven_d_int" ]; then
+  rate_segments=""
+  [ -n "$five_h_int" ]  && rate_segments="${rate_segments}$(format_rate "$five_h_int" "5h")"
+  if [ -n "$five_h_int" ] && [ -n "$seven_d_int" ]; then
+    rate_segments="${rate_segments} $(printf '\033[0;37m│\033[0m') "
   fi
+  [ -n "$seven_d_int" ] && rate_segments="${rate_segments}$(format_rate "$seven_d_int" "7d")"
+  rate_part="$(printf '⏱ %b' "$rate_segments")"
 fi
 
 model_part=""
 [ -n "$model_id" ] && model_part="$(printf '💪 \033[1;35m%s\033[0m' "$model_id")"
 
-if [ -n "$ctx_part" ] && [ -n "$model_part" ]; then
-  line3="${ctx_part} $(printf '\033[0;37m│\033[0m') ${model_part}"
-elif [ -n "$ctx_part" ]; then
-  line3="$ctx_part"
+if [ -n "$rate_part" ] && [ -n "$model_part" ]; then
+  line3="${rate_part} $(printf '\033[0;37m│\033[0m') ${model_part}"
+elif [ -n "$rate_part" ]; then
+  line3="$rate_part"
 elif [ -n "$model_part" ]; then
   line3="$model_part"
 fi
