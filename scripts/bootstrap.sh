@@ -16,6 +16,8 @@ CLAUDE_CLAUDEMD_SOURCE_PATH="$REPO_ROOT/config/claude/CLAUDE.md"
 CLAUDE_CLAUDEMD_TARGET_PATH="$HOME/.claude/CLAUDE.md"
 CLAUDE_SETTINGS_SOURCE_PATH="$REPO_ROOT/config/claude/settings.json"
 CLAUDE_SETTINGS_TARGET_PATH="$HOME/.claude/settings.json"
+CLAUDE_STATUSLINE_SOURCE_PATH="$REPO_ROOT/config/claude/statusline-command.sh"
+CLAUDE_STATUSLINE_TARGET_PATH="$HOME/.claude/statusline-command.sh"
 
 ZSHRC_PATH="$HOME/.zshrc"
 ZSHRC_MARKER="source \"$ZSHRC_EXTRA_PATH\""
@@ -102,6 +104,18 @@ fi
 rm -f "$CLAUDE_SETTINGS_TARGET_PATH"
 ln -s "$CLAUDE_SETTINGS_SOURCE_PATH" "$CLAUDE_SETTINGS_TARGET_PATH"
 echo "Linked Claude settings.json: $CLAUDE_SETTINGS_TARGET_PATH"
+
+# Claude Code: statusLine スクリプト
+# 表示内容は Claude Code 上で `/statusline` を再実行すると調整できる。
+# symlink が外れて実体ファイルに戻ったら、bootstrap.sh の再実行で貼り直される。
+if [ -e "$CLAUDE_STATUSLINE_TARGET_PATH" ] && [ ! -L "$CLAUDE_STATUSLINE_TARGET_PATH" ]; then
+  backup_path="$CLAUDE_STATUSLINE_TARGET_PATH.bak.$(date +%Y%m%d%H%M%S)"
+  mv "$CLAUDE_STATUSLINE_TARGET_PATH" "$backup_path"
+  echo "Backed up existing Claude statusline-command.sh: $backup_path"
+fi
+rm -f "$CLAUDE_STATUSLINE_TARGET_PATH"
+ln -s "$CLAUDE_STATUSLINE_SOURCE_PATH" "$CLAUDE_STATUSLINE_TARGET_PATH"
+echo "Linked Claude statusline-command.sh: $CLAUDE_STATUSLINE_TARGET_PATH"
 
 touch "$ZSHRC_PATH"
 if ! grep -F "$ZSHRC_MARKER" "$ZSHRC_PATH" >/dev/null 2>&1; then
