@@ -15,6 +15,8 @@
     - 抽象的な学びを抽出するskil
 - いかにClaude Codeの自立性を高めるか
 - Claude Code context7
+- Claude Remote Control
+    - スマホから開発
 - 仮説を建ててからClaudeに聞くのを強制
 - Claude Code: トークン制限
 - Google Cloud: skills
