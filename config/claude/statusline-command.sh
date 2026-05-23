@@ -3,14 +3,15 @@
 # 3-line layout:
 #   Line 1: 📂 ~/git/github.com/org/repo
 #   Line 2: 🐙 repo-name │ 🌿 main
-#   Line 3: ⏱ 5h: 42% │ 7d: 18% │ 💪 claude-sonnet-4-6
+#   Line 3: ⏱ 5h: 42% │ 7d: 18% │ ctx: 72% │ 🤖 claude-sonnet-4-6
 
 input=$(cat)
 
-cwd=$(echo "$input"      | jq -r '.workspace.current_dir // .cwd // empty')
-model_id=$(echo "$input" | jq -r '.model.id // empty')
-five_h=$(echo "$input"   | jq -r '.rate_limits.five_hour.used_percentage // empty')
-seven_d=$(echo "$input"  | jq -r '.rate_limits.seven_day.used_percentage // empty')
+cwd=$(echo "$input"           | jq -r '.workspace.current_dir // .cwd // empty')
+model_id=$(echo "$input"      | jq -r '.model.id // empty')
+five_h=$(echo "$input"        | jq -r '.rate_limits.five_hour.used_percentage // empty')
+seven_d=$(echo "$input"       | jq -r '.rate_limits.seven_day.used_percentage // empty')
+ctx_remaining=$(echo "$input" | jq -r '.context_window.remaining_percentage // empty')
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -36,6 +37,18 @@ format_rate() {
     printf '\033[1;31m%s: %d%%\033[0m' "$label" "$val_int"
   else
     printf '\033[1;37m%s: %d%%\033[0m' "$label" "$val_int"
+  fi
+}
+
+# Context remaining formatting helper: yellow < 50%, red < 20%
+format_ctx() {
+  local val_int="$1"
+  if [ "$val_int" -lt 20 ]; then
+    printf '\033[1;31mctx: %d%%\033[0m' "$val_int"
+  elif [ "$val_int" -lt 50 ]; then
+    printf '\033[1;33mctx: %d%%\033[0m' "$val_int"
+  else
+    printf '\033[1;37mctx: %d%%\033[0m' "$val_int"
   fi
 }
 
@@ -74,16 +87,20 @@ if [ -n "$five_h_int" ] || [ -n "$seven_d_int" ]; then
   rate_part="$(printf '⏱ %b' "$rate_segments")"
 fi
 
-model_part=""
-[ -n "$model_id" ] && model_part="$(printf '💪 \033[1;35m%s\033[0m' "$model_id")"
+ctx_part=""
+ctx_remaining_int=""
+[ -n "$ctx_remaining" ] && ctx_remaining_int=$(printf '%.0f' "$ctx_remaining")
+[ -n "$ctx_remaining_int" ] && ctx_part="$(format_ctx "$ctx_remaining_int")"
 
-if [ -n "$rate_part" ] && [ -n "$model_part" ]; then
-  line3="${rate_part} $(printf '\033[0;37m│\033[0m') ${model_part}"
-elif [ -n "$rate_part" ]; then
-  line3="$rate_part"
-elif [ -n "$model_part" ]; then
-  line3="$model_part"
-fi
+model_part=""
+[ -n "$model_id" ] && model_part="$(printf '🤖 \033[1;35m%s\033[0m' "$model_id")"
+
+sep="$(printf ' \033[0;37m│\033[0m ')"
+line3=""
+for seg in "$rate_part" "$ctx_part" "$model_part"; do
+  [ -z "$seg" ] && continue
+  [ -z "$line3" ] && line3="$seg" || line3="${line3}${sep}${seg}"
+done
 
 # ── output (print only non-empty lines) ───────────────────────────────────────
 out=""
