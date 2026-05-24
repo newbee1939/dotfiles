@@ -14,6 +14,8 @@
 - Claude: 便利なskillの追加
     - 抽象的な学びを抽出するskil
 - いかにClaude Codeの自立性を高めるか
+- これskillにしてもいいかも
+    - https://agnozingdays.hatenablog.com/entry/2026/05/23/090000
 - Claude Code context7
 - Claude Remote Control
     - スマホから開発
