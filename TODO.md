@@ -14,6 +14,8 @@
 - Claude: 便利なskillの追加
     - 抽象的な学びを抽出するskil
 - いかにClaude Codeの自立性を高めるか
+- 取り入れる
+    - https://zenn.dev/remitaid/articles/4f9dc787b6c191
 - これskillにしてもいいかも
     - https://agnozingdays.hatenablog.com/entry/2026/05/23/090000
 - Claude Code context7
