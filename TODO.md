@@ -29,6 +29,7 @@
     - 作法まわり
     - Gitの履歴をきれいに保たせる
     - 品の良いgit履歴の作り方
+    - git co main; git pull origin main; git checkout -b hoge/fuga
 - AeroSpace
     - https://zenn.dev/mozumasu/articles/mozumasu-window-costomization
 - ベンダーロックの排除
@@ -59,3 +60,22 @@
 - Vim, NeoVim
     - エディタを開かない
 - https://gemini.google.com/app/35869d4045c9e163?hl=ja
+- CLAUDE.mdに書きたいこと
+    - コミットメッセージは日本語にしてほしい
+    - 初回PR作成時は一旦draftにで作った上で、URLを定時
+        - 画面で見てからオープンしたい
+    - 承認がゼロのPRはマージしない
+    - 実装を修正したら、必ずPRのdescriptionも最新にする
+- zeliij
+    - その場でクリップボードにコピーしたい
+        - コピーした時に、入力欄まで飛ばされてしまう
+- claude codeの入力欄
+    - 常に最下部に表示するようにできないか？
+- 独自のSkillも管理したい
+    - 今日の作業を開始するとき用
+    - Linearチケット更新用のskill
+        - 今日まだ投稿がない場合は投稿
+            - 今日やったことと次回やることを簡潔に
+        - すでに今日のやったことの投稿がある場合は追記する形に
+    - 現在のセッションの中で自動化できる作業がないか調べる・考えるskill
+    - //
