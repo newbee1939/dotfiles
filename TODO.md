@@ -7,6 +7,7 @@
 - 全てターミナルで仕事をする
     - スラックやブラウザも開かない
 - Claude: Agent View
+- hatenaもブロックする
 - Checker Plus for Google Calendarをchrome拡張のリストに
     - はてなブックマーク ブックマーク機能のChrome拡張も
     - https://chromewebstore.google.com/detail/%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF-%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF%E6%A9%9F%E8%83%BD/baniobjofkeeahdkdnpanannchdgblni?hl=ja
