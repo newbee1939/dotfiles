@@ -42,6 +42,9 @@
     "enabled": true,
     "mode": "hold"
   },
+  "remoteControlAtStartup": true,
   "voiceEnabled": true,
-  "remoteControlAtStartup": true
+  "enabledPlugins": {
+    "security-guidance@claude-plugins-official": true
+  }
 }
