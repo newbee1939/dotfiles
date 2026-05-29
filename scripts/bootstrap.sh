@@ -164,6 +164,7 @@ BLOCKED_SITES=(
   5ch.net www.5ch.net 2ch.sc www.2ch.sc
   abema.tv www.abema.tv
   smartnews.com www.smartnews.com
+  b.hatena.ne.jp
 )
 
 echo "Updating detox block in /etc/hosts (sudo required)..."
