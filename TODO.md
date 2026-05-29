@@ -1,6 +1,8 @@
 - Claude Code を社内導入する時の最低限ガードレール5項目 — 機密情報を漏らさない設定パターン
     - https://qiita.com/ennagara128/items/aeaee3e64e75076503fe
 - 最新の効率化ツールをあらためて調べる
+- 16万スター超のCLAUDE.mdに学ぶ、Claude Codeを暴走させない運用術
+    - https://qiita.com/4q_sano/items/dc26f7468dcd39fbe62f
 - テストファイル追加したい
     - https://github.com/tatsuroro/dotfiles/blob/main/.github/workflows/test.yml
 - 全てターミナルで仕事をする
