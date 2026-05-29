@@ -29,17 +29,18 @@
       "Bash(docker images *)",
       "Bash(docker logs *)",
       "Bash(docker inspect *)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "model": "sonnet",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "language": "Japanese",
   "voice": {
     "enabled": true,
     "mode": "hold"
   },
-  "voiceEnabled": true,
-  "language": "Japanese",
-  "statusLine": {
-    "type": "command",
-    "command": "bash ~/.claude/statusline-command.sh"
-  }
+  "voiceEnabled": true
 }
