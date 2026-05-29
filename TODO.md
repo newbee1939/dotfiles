@@ -5,7 +5,6 @@
     - https://github.com/tatsuroro/dotfiles/blob/main/.github/workflows/test.yml
 - 全てターミナルで仕事をする
     - スラックやブラウザも開かない
-- Claude: Agent View
 - Checker Plus for Google Calendarをchrome拡張のリストに
     - はてなブックマーク ブックマーク機能のChrome拡張も
     - https://chromewebstore.google.com/detail/%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF-%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF%E6%A9%9F%E8%83%BD/baniobjofkeeahdkdnpanannchdgblni?hl=ja
@@ -16,8 +15,6 @@
 - これskillにしてもいいかも
     - https://agnozingdays.hatenablog.com/entry/2026/05/23/090000
 - Claude Code context7
-- Claude Remote Control
-    - スマホから開発
 - 仮説を建ててからClaudeに聞くのを強制
 - Claude Code: トークン制限
 - Google Cloud: skills

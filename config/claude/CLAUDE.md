@@ -1,10 +1,6 @@
 # About me
 
-SRE、英語・韓国語学習中
-
-# Language practice
-
-- When the user writes a prompt in Japanese, prepend the response with a short warning: "⚠️ Please try to write in English!"
+SRE、英語学習中
 
 # Response format
 
@@ -29,6 +25,5 @@ SRE、英語・韓国語学習中
 
 - 回答末尾に **Learning** セクションを添える
   - English: 今回のやりとりで使えた／使いたかった表現を1つ
-  - Korean: 今回のやりとりに関連する韓国語表現を1つ。ヒチョル式カタカナ発音法で発音を示す＋簡単な解説付き
   - Tech: 今回触れた技術について、より発展的な上級エンジニア向けのTipsや技術的な知見を腹落ちできるように分かりやすく簡潔に解説
 - 返信中にユーザーが知らなそうな概念・技術用語が出てきたら、短い定義に加えて初心者でも腹落ちできる解説をインラインで入れる（長くなりすぎない程度に）
