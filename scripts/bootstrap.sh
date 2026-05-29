@@ -18,6 +18,8 @@ CLAUDE_SETTINGS_SOURCE_PATH="$REPO_ROOT/config/claude/settings.json"
 CLAUDE_SETTINGS_TARGET_PATH="$HOME/.claude/settings.json"
 CLAUDE_STATUSLINE_SOURCE_PATH="$REPO_ROOT/config/claude/statusline-command.sh"
 CLAUDE_STATUSLINE_TARGET_PATH="$HOME/.claude/statusline-command.sh"
+CLAUDE_SKILLS_SOURCE_PATH="$REPO_ROOT/config/claude/skills"
+CLAUDE_SKILLS_TARGET_PATH="$HOME/.claude/skills"
 
 ZSHRC_PATH="$HOME/.zshrc"
 ZSHRC_MARKER="source \"$ZSHRC_EXTRA_PATH\""
@@ -116,6 +118,18 @@ fi
 rm -f "$CLAUDE_STATUSLINE_TARGET_PATH"
 ln -s "$CLAUDE_STATUSLINE_SOURCE_PATH" "$CLAUDE_STATUSLINE_TARGET_PATH"
 echo "Linked Claude statusline-command.sh: $CLAUDE_STATUSLINE_TARGET_PATH"
+
+# Claude Code: skills ディレクトリ (自作 skill を dotfiles で一元管理)
+# 新規 skill は config/claude/skills/<name>/SKILL.md に追加すれば反映される。
+# ディレクトリごと symlink するため、~/.claude/skills 配下の skill は全てリポジトリ管理になる。
+if [ -e "$CLAUDE_SKILLS_TARGET_PATH" ] && [ ! -L "$CLAUDE_SKILLS_TARGET_PATH" ]; then
+  backup_path="$CLAUDE_SKILLS_TARGET_PATH.bak.$(date +%Y%m%d%H%M%S)"
+  mv "$CLAUDE_SKILLS_TARGET_PATH" "$backup_path"
+  echo "Backed up existing Claude skills dir: $backup_path"
+fi
+rm -f "$CLAUDE_SKILLS_TARGET_PATH"
+ln -s "$CLAUDE_SKILLS_SOURCE_PATH" "$CLAUDE_SKILLS_TARGET_PATH"
+echo "Linked Claude skills dir: $CLAUDE_SKILLS_TARGET_PATH"
 
 touch "$ZSHRC_PATH"
 if ! grep -F "$ZSHRC_MARKER" "$ZSHRC_PATH" >/dev/null 2>&1; then
