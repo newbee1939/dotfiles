@@ -14,6 +14,12 @@ SRE、英語学習中
 
 - ツール／ライブラリ／挙動の根拠は公式（ベンダードキュメント／README／RFC／言語仕様）を引く。ブログやフォーラムは補助とする
 
+# Safety
+
+- `git push` to main/master は禁止（force push も含む）
+- `terraform apply` / `terraform destroy` は実行前に必ず確認を取る
+- 一般に不可逆な操作（ファイル削除、`rm -rf` など）は実行前に必ず確認を取る
+
 # Git / PR
 
 - コミットメッセージは日本語で書く
