@@ -3,15 +3,17 @@
 # 3-line layout:
 #   Line 1: 📂 ~/git/github.com/org/repo
 #   Line 2: 🐙 repo-name │ 🌿 main
-#   Line 3: ⏱ 5h: 42% │ 7d: 18% │ ctx: 72% │ 🤖 claude-sonnet-4-6
+#   Line 3: ⏱ 5h: 42% (6/2 18:30) │ 7d: 18% (6/12 9:00) │ ctx: 72% │ 🤖 claude-sonnet-4-6
 
 input=$(cat)
 
-cwd=$(echo "$input"           | jq -r '.workspace.current_dir // .cwd // empty')
-model_id=$(echo "$input"      | jq -r '.model.id // empty')
-five_h=$(echo "$input"        | jq -r '.rate_limits.five_hour.used_percentage // empty')
-seven_d=$(echo "$input"       | jq -r '.rate_limits.seven_day.used_percentage // empty')
-ctx_remaining=$(echo "$input" | jq -r '.context_window.remaining_percentage // empty')
+cwd=$(echo "$input"              | jq -r '.workspace.current_dir // .cwd // empty')
+model_id=$(echo "$input"         | jq -r '.model.id // empty')
+five_h=$(echo "$input"           | jq -r '.rate_limits.five_hour.used_percentage // empty')
+five_h_reset=$(echo "$input"     | jq -r '.rate_limits.five_hour.resets_at // empty')
+seven_d=$(echo "$input"          | jq -r '.rate_limits.seven_day.used_percentage // empty')
+seven_d_reset=$(echo "$input"    | jq -r '.rate_limits.seven_day.resets_at // empty')
+ctx_remaining=$(echo "$input"    | jq -r '.context_window.remaining_percentage // empty')
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -28,15 +30,30 @@ if [ -n "$git_root" ]; then
   repo_name=$(basename "$git_root")
 fi
 
+# Convert Unix epoch to an absolute JST datetime string (BSD/macOS date)
+# Output example: "6/12 9:00"
+format_reset_time() {
+  local epoch="$1"
+  [ -z "$epoch" ] && return
+  TZ=Asia/Tokyo date -r "$epoch" '+%-m/%-d %-H:%M' 2>/dev/null
+}
+
 # Rate limit formatting helper: colorize red if >= 80%
-# Usage: format_rate <int_value> <label>  → echoes colored string
+# Usage: format_rate <int_value> <label> [reset_epoch]  → echoes colored string
 format_rate() {
   local val_int="$1"
   local label="$2"
+  local reset_epoch="$3"
+  local reset_str=""
+  [ -n "$reset_epoch" ] && reset_str=$(format_reset_time "$reset_epoch")
+
+  local pct_str="${label}: ${val_int}%"
+  [ -n "$reset_str" ] && pct_str="${pct_str} (${reset_str})"
+
   if [ "$val_int" -ge 80 ]; then
-    printf '\033[1;31m%s: %d%%\033[0m' "$label" "$val_int"
+    printf '\033[1;31m%s\033[0m' "$pct_str"
   else
-    printf '\033[1;37m%s: %d%%\033[0m' "$label" "$val_int"
+    printf '\033[1;37m%s\033[0m' "$pct_str"
   fi
 }
 
@@ -79,11 +96,11 @@ seven_d_int=""
 
 if [ -n "$five_h_int" ] || [ -n "$seven_d_int" ]; then
   rate_segments=""
-  [ -n "$five_h_int" ]  && rate_segments="${rate_segments}$(format_rate "$five_h_int" "5h")"
+  [ -n "$five_h_int" ]  && rate_segments="${rate_segments}$(format_rate "$five_h_int" "5h" "$five_h_reset")"
   if [ -n "$five_h_int" ] && [ -n "$seven_d_int" ]; then
     rate_segments="${rate_segments} $(printf '\033[0;37m│\033[0m') "
   fi
-  [ -n "$seven_d_int" ] && rate_segments="${rate_segments}$(format_rate "$seven_d_int" "7d")"
+  [ -n "$seven_d_int" ] && rate_segments="${rate_segments}$(format_rate "$seven_d_int" "7d" "$seven_d_reset")"
   rate_part="$(printf '⏱ %b' "$rate_segments")"
 fi
 
