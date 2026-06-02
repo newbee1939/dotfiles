@@ -3,7 +3,7 @@
 # 3-line layout:
 #   Line 1: 📂 ~/git/github.com/org/repo
 #   Line 2: 🐙 repo-name │ 🌿 main
-#   Line 3: ⏱ 5h: 42% (6/2 18:30) │ 7d: 18% (6/12 9:00) │ ctx: 72% │ 🤖 claude-sonnet-4-6
+#   Line 3: ⏱ 5h: 42% (↻18:30) │ 7d: 18% (↻明日09:00) │ ctx: 72% │ 🤖 claude-sonnet-4-6
 
 input=$(cat)
 
@@ -30,12 +30,34 @@ if [ -n "$git_root" ]; then
   repo_name=$(basename "$git_root")
 fi
 
-# Convert Unix epoch to an absolute JST datetime string (BSD/macOS date)
-# Output example: "6/12 9:00"
+# Convert Unix epoch to a relative reset-time string (JST). ↻ = "resets at"
+# Output examples:
+#   today    → "↻18:30"
+#   tomorrow → "↻明日09:00"
+#   later    → "↻+2d09:00"
 format_reset_time() {
   local epoch="$1"
   [ -z "$epoch" ] && return
-  TZ=Asia/Tokyo date -r "$epoch" '+%-m/%-d %-H:%M' 2>/dev/null
+
+  local reset_hhmm reset_date today_date tomorrow_date
+  reset_hhmm=$(TZ=Asia/Tokyo date -r "$epoch" "+%H:%M" 2>/dev/null)
+  reset_date=$(TZ=Asia/Tokyo date -r "$epoch" "+%Y%m%d" 2>/dev/null)
+  today_date=$(TZ=Asia/Tokyo date "+%Y%m%d" 2>/dev/null)
+  tomorrow_date=$(TZ=Asia/Tokyo date -v+1d "+%Y%m%d" 2>/dev/null)
+
+  [ -z "$reset_hhmm" ] && return
+
+  if [ "$reset_date" = "$today_date" ]; then
+    printf '↻%s' "$reset_hhmm"
+  elif [ "$reset_date" = "$tomorrow_date" ]; then
+    printf '↻明日%s' "$reset_hhmm"
+  else
+    local today_noon reset_epoch_s diff_days
+    today_noon=$(TZ=Asia/Tokyo date -j -f "%Y%m%d%H%M%S" "${today_date}120000" "+%s" 2>/dev/null)
+    reset_epoch_s=$(TZ=Asia/Tokyo date -r "$epoch" "+%s" 2>/dev/null)
+    diff_days=$(( (reset_epoch_s - today_noon) / 86400 ))
+    printf '↻+%dd%s' "$diff_days" "$reset_hhmm"
+  fi
 }
 
 # Rate limit formatting helper: colorize red if >= 80%
