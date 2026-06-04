@@ -1,4 +1,12 @@
 - sub-agentをうまく活用したい
+- ローカルLLM環境
+    - 良さそうかも
+    - Googleが「Gemma 4 12B」をリリース。ノートPCで動いて26B級の性能、またお化けローカルLLM
+        - https://www.gizmodo.jp/article/google_gemma_4_12b/
+    - けっこう実用的。「OpenCode」×ローカルLLMで“無料Claude Code”してみた
+        - https://www.gizmodo.jp/article/opencode_google_gemma_4/
+- Claude Codeに依存しない環境づくり
+    - ベンダーロックの排除
 - task-planningのskillを作る
     - 前日に次の日にやる作業の計画を全て立てる
     - その場その場で判断するよりも、事前に判断した上で一気に作業させる方がコンテキストスイッチも最小限で済むので良さそう
