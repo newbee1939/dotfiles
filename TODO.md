@@ -1,4 +1,14 @@
 - sub-agentをうまく活用したい
+- その日のタスクの終了時に投げるプロンプトもスキルにする
+    - 今日やったことと明日やることを簡潔にLinearに追記してください的な
+- headroomを入れる
+    - コンテキストの削減
+- 日報のSkill
+- 技術記事執筆自動化skill
+    - 過去の手で書いた記事を参考にするなど
+- 前日に次の日にやることの計画を立てる、プランニングするSkill
+- Xのリストを使った情報収集=> Xを開かずに自動で収集したい
+    - https://speakerdeck.com/tonkotsuboy_com/aishi-dai-nosi-noji-shu-inpututotoautopututoshu?slide=17
 - ローカルLLM環境
     - 良さそうかも
     - Googleが「Gemma 4 12B」をリリース。ノートPCで動いて26B級の性能、またお化けローカルLLM
