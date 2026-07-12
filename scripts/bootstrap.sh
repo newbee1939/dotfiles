@@ -41,7 +41,14 @@ echo "Updating Homebrew..."
 brew update
 
 echo "Installing packages from Brewfile..."
-brew bundle --file="$BREWFILE_PATH"
+# brew bundle は一部のcaskアップグレードが失敗することがある(例: Homebrewのユーティリティが
+# 実行時にコンパイルするSwiftスクリプトと、OSに対して古いCommand Line Toolsの組み合わせで
+# ビルドエラーになるケース)。1パッケージの失敗で以降のsymlink設定などが丸ごとスキップされない
+# よう、ここだけ失敗を握りつぶして警告に留める。
+if ! brew bundle --file="$BREWFILE_PATH"; then
+  echo "Warning: brew bundle failed for one or more packages. Continuing with the rest of bootstrap." >&2
+  echo "  Retry later with: brew bundle --file=\"$BREWFILE_PATH\"" >&2
+fi
 
 # Claude Codeのインストール
 # 参考: https://code.claude.com/docs/ja/quickstart#native-install-recommended
