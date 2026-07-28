@@ -56,6 +56,7 @@
     - https://agnozingdays.hatenablog.com/entry/2026/05/23/090000
 - Claude Code context7
 - 仮説を建ててからClaudeに聞くのを強制
+- 1日の業務を振り返ってskill作成
 - Claude Code: トークン制限
 - Google Cloud: skills
 - git worktreeを使うのと、gitの扱いについてCLAUDE.md
