@@ -57,6 +57,7 @@
 - Claude Code context7
 - 仮説を建ててからClaudeに聞くのを強制
 - 1日の業務を振り返ってskill作成
+    - 自動でlinearのコメントに同期
 - Claude Code: トークン制限
 - Google Cloud: skills
 - git worktreeを使うのと、gitの扱いについてCLAUDE.md
