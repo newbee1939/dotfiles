@@ -43,6 +43,15 @@ while read -r extension; do cursor --install-extension "$extension"; done < conf
 ## 手動設定（未自動化）
 
 - `gh auth login` と SSH 鍵の生成/登録
+- Claude Code の routine（定期実行するクラウドエージェント）を作成する（5h制限対策）
+  - Claude Code で `/schedule` → Create を選び、以下を指定する
+    - 名前: `morning-ping`
+    - cron: `0 21 * * *` … **UTC 指定**なので毎朝 06:00 JST の意味
+    - モデル: `haiku`
+    - プロンプト: `ping!`
+    - リポジトリ (`sources`): **指定しない**（clone した中身を読ませる必要がないため）
+  - 実体は Anthropic のクラウド側にあり、**このリポジトリからは反映できない**。CLI にサブコマンドが無く冪等にもできないため `bootstrap.sh` では自動化しない
+  - 一覧・変更・削除は Web UI から: <https://claude.ai/code/routines>
 
 ## 操作 Tips
 
