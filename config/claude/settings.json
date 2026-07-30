@@ -39,7 +39,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "i=$(cat); c=$(jq -r '.tool_input.command // empty' <<<\"$i\" | head -1 | awk '{print $1}'); [ -n \"$c\" ] || exit 0; f=\"${TMPDIR:-/tmp}/claude-lowlayer-$(jq -r .session_id <<<\"$i\")\"; grep -qxF -- \"$c\" \"$f\" 2>/dev/null && exit 0; echo \"$c\" >>\"$f\"; jq -n --arg c \"$c\" '{hookSpecificOutput:{hookEventName:\"PostToolUse\",additionalContext:(\"低レイヤー還元: このセッションで初めて `\"+$c+\"` を実行した。裏で何が起きているか（システムコール／カーネル／ネットワークのいずれか1つ）を回答の最後に1行だけ添えること。\")}}'"
+            "command": "i=$(cat); c=$(jq -r '.tool_input.command // empty' <<<\"$i\" | head -1 | awk '{print $1}'); [ -n \"$c\" ] || exit 0; f=\"${TMPDIR:-/tmp}/claude-lowlayer-$(jq -r .session_id <<<\"$i\")\"; grep -qxF -- \"$c\" \"$f\" 2>/dev/null && exit 0; echo \"$c\" >>\"$f\"; jq -n --arg c \"$c\" '{hookSpecificOutput:{hookEventName:\"PostToolUse\",additionalContext:(\"低レイヤー還元: `\"+$c+\"` はこのセッション初出。回答の最後に1行だけ、このコマンドがコンピュータの中で実際に何をしているかを平易に書くこと。専門用語を使うなら短い言い換えを添える。\")}}'"
           }
         ]
       }
