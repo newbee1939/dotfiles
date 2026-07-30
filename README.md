@@ -43,10 +43,11 @@ while read -r extension; do cursor --install-extension "$extension"; done < conf
 ## 手動設定（未自動化）
 
 - `gh auth login` と SSH 鍵の生成/登録
-- Linear MCP の接続（`wrap-up` / `plan-tomorrow` / `today-log` skill が使う）
-  - `claude mcp add --transport http linear https://mcp.linear.app/mcp` を実行し、Claude Code 内で `/mcp` から OAuth 認証する
+- Linear / Slack の MCP 接続（`end-session` / `daily-plan` skill が使う）
+  - Linear: `claude mcp add --transport http linear https://mcp.linear.app/mcp` → Claude Code 内で `/mcp` から OAuth 認証
+  - Slack: Claude Code 内で `/plugin install slack` → OAuth 認証（ワークスペース管理者の承認が要る場合あり）
   - 認証情報はローカルに保存されるためリポジトリでは管理しない
-  - 参考: [Linear MCP server (公式ドキュメント)](https://linear.app/docs/mcp)
+  - 参考: [Linear MCP](https://linear.app/docs/mcp) / [Slack MCP](https://docs.slack.dev/ai/slack-mcp-server/connect-to-claude/)
 - Claude Code の routine（定期実行するクラウドエージェント）を作成する（5h制限対策）
   - Claude Code で `/schedule` → Create を選び、以下を指定する
     - 名前: `morning-ping`
