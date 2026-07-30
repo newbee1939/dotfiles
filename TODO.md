@@ -50,6 +50,8 @@
     - https://chromewebstore.google.com/detail/%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF-%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF%E6%A9%9F%E8%83%BD/baniobjofkeeahdkdnpanannchdgblni?hl=ja
 - chrome拡張 ポモドーロ
 - いかにClaude Codeの自立性を高めるか
+- strace自動実行
+    - 自然と低レイヤーの勉強ができる仕組み
 - 取り入れる
     - https://zenn.dev/remitaid/articles/4f9dc787b6c191
 - これskillにしてもいいかも
