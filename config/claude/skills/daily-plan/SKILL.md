@@ -9,7 +9,7 @@ description: 退勤前に使う。今日やったことを一覧にし、明日�
 
 ## 1. 材料を集める（今日 00:00 以降）
 - **Linear**（`mcp__linear*`）: 自分アサインのチケット。ステータス / 優先度 / 期日、説明のタスクリスト、直近コメント
-- **PR**: `gh pr status` と `gh pr list --author @me --state all --search "updated:>=$(date +%F)"`（レビュー待ち / 変更要求 / CI 失敗）
+- **PR**: チケットに紐づく PR の状態（レビュー待ち / 変更要求 / CI 失敗）。チケット外の分は `gh pr status` で拾う
 - **コミット**: `git log --author="$(git config user.email)" --since=midnight --oneline`
 - **Slack**（`mcp__slack*`）: 今日の自分の投稿。**チケットになっていない依頼や約束**が出てくるので必ず見る
 - 会話から、コード以外の作業（調査・設計・対応）も拾う
