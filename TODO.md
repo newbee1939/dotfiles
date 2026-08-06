@@ -1,3 +1,32 @@
+- セッションを終えるときに、そのセッションで学んだことを1問1答
+    - 学びの強制アウトプット
+- PR更新したらDescriptionも更新したい
+- 個人開発の流れを自動化するSkillを作る
+    - 最初にconcept.mdとarchitecture.mdを作る
+    - plan.mdを完璧に作る
+    - あとはAIで自動的に全て作らせる
+    - 量産する
+- 最近やったチケットとかタスクの内容から記事になりそうなトピックを自動で抽出するClaude Skills
+- 日報の勉強内容をピックアップするskill
+    - 何を勉強するか毎回悩むのをやめる
+- 過去の作業履歴からOSSや個人開発のアイデアを出させるskill
+- crit
+    - https://zenn.dev/tenkei/articles/5ba5c993dfb8d6
+- 【Claude Code】鹿野さんに聞く 私の推しの並行開発環境 大公開
+    - https://speakerdeck.com/tonkotsuboy_com/claude-code-parallel-2026-07-15
+- 障害発生時の対応手順のSkill
+    - イメトレしておく
+- 全ての設定を英語に
+- セッション終えるときに、そのセッションで学んだことの1問1答
+- 個人のTILを参照させる
+    - setupのときにローカルにcloneさせるようにする？
+- daily-planのskillの実行もroutineで自動化？
+- git worktreeを掃除するskill
+    - sessionを終えるときに、関連するworktreeが残っていたら消す
+- 個人開発などにおけるセキュリティ周りの対応やチェックリスト
+    - skillにまとめる
+    - 本を読みながら整理
+    - 定期的にブラッシュアップ
 - sub-agentをうまく活用したい
 - headroomを入れる
     - コンテキストの削減

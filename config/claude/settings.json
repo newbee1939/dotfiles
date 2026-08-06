@@ -37,14 +37,15 @@
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
   },
+  "enabledPlugins": {
+    "security-guidance@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
+  },
   "language": "Japanese",
   "voice": {
     "enabled": true,
     "mode": "hold"
   },
   "remoteControlAtStartup": true,
-  "voiceEnabled": true,
-  "enabledPlugins": {
-    "security-guidance@claude-plugins-official": true
-  }
+  "voiceEnabled": true
 }
