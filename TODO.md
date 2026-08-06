@@ -15,6 +15,8 @@
 - 日報の勉強内容をピックアップするskill
     - 何を勉強するか毎回悩むのをやめる
 - 過去の作業履歴からOSSや個人開発のアイデアを出させるskill
+- 他に良さそうなskillある？？
+- コントリビュートできそうなOSSを探すskill
 - crit
     - https://zenn.dev/tenkei/articles/5ba5c993dfb8d6
 - 【Claude Code】鹿野さんに聞く 私の推しの並行開発環境 大公開
