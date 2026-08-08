@@ -83,7 +83,7 @@ updates:
   - package-ecosystem: npm        # gomod / cargo / pip / terraform / docker
     directory: /
     schedule:
-      interval: monthly           # 毎週バラバラに来ると読まなくなる
+      interval: weekly            # グルーピングしているので届くのは週 1 本
     cooldown:
       default-days: 7             # 汚染されたリリースは数時間〜1 日で消される。
                                   # security updates に cooldown はかからない
@@ -96,7 +96,7 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
     groups:
       actions:
         patterns: ["*"]
