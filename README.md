@@ -40,8 +40,25 @@ while read -r extension; do cursor --install-extension "$extension"; done < conf
 - VSCode Insiders: `~/Library/Application Support/Code - Insiders/User/settings.json`
 - Cursor: `~/Library/Application Support/Cursor/User/settings.json`
 
+## 英語漬け設定
+
+仕事中に英語へ触れる量を増やすため、逃げ道を1つずつ残した上で英語を強制している。
+
+| 何を | どこで | 逃げ道 |
+|---|---|---|
+| Claude Code の返信が英語になる（読む） | `config/claude/settings.json` の `language` | 入力の先頭に `ja:` |
+| 音声入力が英語で認識される（話す） | 同上（`language` は[音声入力の言語も兼ねる](https://code.claude.com/docs/en/voice-dictation)）。`/voice` で ON | `/voice off` |
+| 日本語プロンプトを弾く（書く） | `config/claude/hooks/english.sh` の `UserPromptSubmit` | 入力の先頭に `ja:` |
+| Claude の返信を読み上げる（聞く） | 同 `english.sh` の `Stop`（`say` コマンド） | `settings.json` から `Stop` を消す |
+| コミットメッセージを英語に強制 | `config/git/hooks/commit-msg` | `git commit --no-verify` |
+
+`core.hooksPath` を `~/.gitconfig` でグローバルに設定しているため、**全リポジトリの `.git/hooks` が無効になる**。独自の hook を使うリポジトリでは、そのリポジトリ側で `git config core.hooksPath .git/hooks` を設定する。
+
 ## 手動設定（未自動化）
 
+- macOS の表示言語を English にする（OS / Slack / Chrome / GitHub の UI が英語になる）
+  - システム設定 → 一般 → 言語と地域 → 「優先する言語」で English を一番上へ → 再起動
+  - 日本語入力は キーボード → 入力ソース に日本語を残せば維持できる
 - `gh auth login` と SSH 鍵の生成/登録
 - Linear / Slack の MCP 接続（`end-session` / `daily-plan` skill が使う）
   - Linear: `claude mcp add --transport http linear https://mcp.linear.app/mcp` → Claude Code 内で `/mcp` から OAuth 認証

@@ -1,3 +1,8 @@
+[core]
+  # 英語コミット強制用の commit-msg hook を全リポジトリに効かせる。
+  # 独自の hook を持つリポジトリ側でローカルに core.hooksPath を設定すればそちらが勝つ。
+  hooksPath = ~/work/dotfiles/config/git/hooks
+
 [alias]
   st = status
   co = checkout

@@ -20,6 +20,8 @@ CLAUDE_STATUSLINE_SOURCE_PATH="$REPO_ROOT/config/claude/statusline-command.sh"
 CLAUDE_STATUSLINE_TARGET_PATH="$HOME/.claude/statusline-command.sh"
 CLAUDE_SKILLS_SOURCE_PATH="$REPO_ROOT/config/claude/skills"
 CLAUDE_SKILLS_TARGET_PATH="$HOME/.claude/skills"
+CLAUDE_HOOKS_SOURCE_PATH="$REPO_ROOT/config/claude/hooks"
+CLAUDE_HOOKS_TARGET_PATH="$HOME/.claude/hooks"
 
 ZSHRC_PATH="$HOME/.zshrc"
 ZSHRC_MARKER="source \"$ZSHRC_EXTRA_PATH\""
@@ -137,6 +139,16 @@ fi
 rm -f "$CLAUDE_SKILLS_TARGET_PATH"
 ln -s "$CLAUDE_SKILLS_SOURCE_PATH" "$CLAUDE_SKILLS_TARGET_PATH"
 echo "Linked Claude skills dir: $CLAUDE_SKILLS_TARGET_PATH"
+
+# Claude Code: hooks ディレクトリ (settings.json の hooks から参照する)
+if [ -e "$CLAUDE_HOOKS_TARGET_PATH" ] && [ ! -L "$CLAUDE_HOOKS_TARGET_PATH" ]; then
+  backup_path="$CLAUDE_HOOKS_TARGET_PATH.bak.$(date +%Y%m%d%H%M%S)"
+  mv "$CLAUDE_HOOKS_TARGET_PATH" "$backup_path"
+  echo "Backed up existing Claude hooks dir: $backup_path"
+fi
+rm -f "$CLAUDE_HOOKS_TARGET_PATH"
+ln -s "$CLAUDE_HOOKS_SOURCE_PATH" "$CLAUDE_HOOKS_TARGET_PATH"
+echo "Linked Claude hooks dir: $CLAUDE_HOOKS_TARGET_PATH"
 
 touch "$ZSHRC_PATH"
 if ! grep -F "$ZSHRC_MARKER" "$ZSHRC_PATH" >/dev/null 2>&1; then

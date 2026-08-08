@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# コミットメッセージを英語に強制する。逃げ道: git commit --no-verify
+set -uo pipefail
+
+if grep -v '^#' "$1" | LC_ALL=en_US.UTF-8 grep -q '[ぁ-んァ-ン]'; then
+  echo 'commit-msg: Write the commit message in English. (bypass: git commit --no-verify)' >&2
+  exit 1
+fi
