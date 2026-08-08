@@ -1,14 +1,11 @@
 # リポジトリの足場
 
-**最初は下の「最小セット」だけ入れる。** 残りは必要になってから足す。
-判断基準は「**入れ忘れると後から直せないか**」。それ以外は後回しでいい。
+新規リポジトリに入れる最小セット。**これ以外は必要になってから足す。**
 
-## 最小セット（新規リポジトリで必ず入れる）
-
-### 1. `.gitignore` に `.env`
+## 1. `.gitignore` に `.env`
 鍵が 1 度でも push されたら履歴から消えない。**唯一、取り返しがつかない。**
 
-### 2. シークレット検出とプッシュ保護
+## 2. シークレット検出とプッシュ保護
 
 ```bash
 gh api -X PATCH repos/<owner>/<repo> --input - <<'JSON'
@@ -19,10 +16,10 @@ gh api -X PATCH repos/<owner>/<repo> --input - <<'JSON'
 JSON
 ```
 
-push protection は鍵を含む push をその場で拒否する。**AI は平気で鍵をベタ書きする**ので、人間のレビューに頼らない。
-`dependabot_security_updates` は脆弱性への修正 PR で、**既定 off**。パブリックリポジトリは全部無料。
+push protection は鍵を含む push をその場で拒否する。**AI は平気で鍵をベタ書きする**ので人間のレビューに頼らない。
+`dependabot_security_updates` は脆弱性への修正 PR で**既定 off**。パブリックリポジトリは全部無料。
 
-### 3. `.tool-versions`
+## 3. `.tool-versions`
 
 ```
 node 25.6.0
@@ -31,7 +28,7 @@ node 25.6.0
 **唯一の真実。** ローカルは mise、CI は `setup-*` の `*-version-file` が同じファイルを読む。
 `.nvmrc` は使わない（mise が既定で読まず、ローカルと CI がズレる）。
 
-### 4. CI（lint / test / build）
+## 4. CI（lint / test / build）
 **検証ループの土台**。これが無いと Claude は「done に見えたら止まる」。
 
 ```yaml
@@ -68,14 +65,14 @@ jobs:
 
 ハッシュは `gh api repos/actions/checkout/commits/v7.0.1 --jq .sha` で引ける。
 
-### 5. `AGENTS.md` と `CLAUDE.md`
+## 5. `AGENTS.md` と `CLAUDE.md`
 `AGENTS.md` に開発ルールを書き、`CLAUDE.md` は `@AGENTS.md` の 1 行だけにする。AGENTS.md は Codex / Cursor / Copilot なども読む共通規格で、Claude Code は CLAUDE.md しか読まない。**二重管理しない。**
 
 書くのは**推測できないこと**だけ — ビルド / テスト / デプロイのコマンド、既定と違う規約、環境の癖。
 **コードを読めば分かることは書かない。** 長いほど守られなくなる。
 
-### 6. `.github/dependabot.yml`
-**パッケージを使うリポジトリには必ず入れる。** 入れないと依存は放置され、脆弱性の通知だけが溜まる。
+## 6. `.github/dependabot.yml`
+**パッケージを使うなら必ず入れる。** 無いと依存は放置され、脆弱性の通知だけが溜まる。
 
 ```yaml
 version: 2
@@ -103,14 +100,11 @@ updates:
     open-pull-requests-limit: 1
 ```
 
----
+## 7. `.npmrc`（npm を使うなら）
 
-## 必要になったら足す
+```
+strict-allow-scripts=true   # 未承認の install スクリプトを実行させない
+min-release-age=7           # 公開から 7 日未満のバージョンは入れない
+```
 
-| きっかけ | 足すもの |
-|---|---|
-| npm を使う | `.npmrc` に `strict-allow-scripts=true` と `min-release-age=7`（install 時に任意コードが走るのが汚染パッケージの侵入口。落ちたら中身を読んで `npm approve-scripts <pkg>`） |
-| 公開する | `LICENSE`（無いと全権利留保扱いで誰も使えない）、`README.md` |
-| シークレットを使う | `.env.example`（値は入れない） |
-| プライベートリポジトリ | CI に gitleaks（push protection が有料なので代替する） |
-| Actions が書き込み権限を持っていた | `gh api -X PUT repos/<owner>/<repo>/actions/permissions/workflow -f default_workflow_permissions=read -F can_approve_pull_request_reviews=false` |
+install 時に任意コードが走るのが汚染パッケージの侵入口。落ちたら**中身を読んでから** `npm approve-scripts <pkg>` で明示する。
