@@ -74,21 +74,8 @@ jobs:
 書くのは**推測できないこと**だけ — ビルド / テスト / デプロイのコマンド、既定と違う規約、環境の癖。
 **コードを読めば分かることは書かない。** 長いほど守られなくなる。
 
----
-
-## 必要になったら足す
-
-| きっかけ | 足すもの |
-|---|---|
-| 依存パッケージを入れ始めた | `.github/dependabot.yml`（下記） |
-| npm を使う | `.npmrc` に `strict-allow-scripts=true` と `min-release-age=7`（install 時に任意コードが走るのが汚染パッケージの侵入口。落ちたら中身を読んで `npm approve-scripts <pkg>`） |
-| 公開する | `LICENSE`（無いと全権利留保扱いで誰も使えない）、`README.md` |
-| シークレットを使う | `.env.example`（値は入れない） |
-| プライベートリポジトリ | CI に gitleaks（push protection が有料なので代替する） |
-| main に直接 push して事故った | ruleset で `deletion` と `non_fast_forward` を禁止（下記） |
-| Actions が書き込み権限を持っていた | `gh api -X PUT repos/<owner>/<repo>/actions/permissions/workflow -f default_workflow_permissions=read -F can_approve_pull_request_reviews=false` |
-
-### `.github/dependabot.yml`
+### 6. `.github/dependabot.yml`
+**パッケージを使うリポジトリには必ず入れる。** 入れないと依存は放置され、脆弱性の通知だけが溜まる。
 
 ```yaml
 version: 2
@@ -116,15 +103,14 @@ updates:
     open-pull-requests-limit: 1
 ```
 
-### ブランチ保護（ruleset）
+---
 
-```bash
-gh api -X POST repos/<owner>/<repo>/rulesets --input - <<'JSON'
-{"name":"main","target":"branch","enforcement":"active",
- "conditions":{"ref_name":{"include":["~DEFAULT_BRANCH"],"exclude":[]}},
- "rules":[{"type":"deletion"},{"type":"non_fast_forward"}]}
-JSON
-```
+## 必要になったら足す
 
-ブランチ削除と force push の禁止。**取り返しがつかなくなるのはこの 2 つだけ**なので、まずこれだけでいい。
-PR 必須にしたくなったら `{"type":"pull_request","parameters":{...}}` を足す（必須パラメータ 5 つを全部渡す）。
+| きっかけ | 足すもの |
+|---|---|
+| npm を使う | `.npmrc` に `strict-allow-scripts=true` と `min-release-age=7`（install 時に任意コードが走るのが汚染パッケージの侵入口。落ちたら中身を読んで `npm approve-scripts <pkg>`） |
+| 公開する | `LICENSE`（無いと全権利留保扱いで誰も使えない）、`README.md` |
+| シークレットを使う | `.env.example`（値は入れない） |
+| プライベートリポジトリ | CI に gitleaks（push protection が有料なので代替する） |
+| Actions が書き込み権限を持っていた | `gh api -X PUT repos/<owner>/<repo>/actions/permissions/workflow -f default_workflow_permissions=read -F can_approve_pull_request_reviews=false` |
