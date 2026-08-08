@@ -5,11 +5,12 @@
 ## 1. `.gitignore` に `.env`
 鍵が 1 度でも push されたら履歴から消えない。**唯一、取り返しがつかない。**
 
-## 2. シークレット検出とプッシュ保護
+## 2. リポジトリ設定
 
 ```bash
 gh api -X PATCH repos/<owner>/<repo> --input - <<'JSON'
-{"security_and_analysis":{
+{"delete_branch_on_merge":true,
+ "security_and_analysis":{
   "secret_scanning":{"status":"enabled"},
   "secret_scanning_push_protection":{"status":"enabled"},
   "dependabot_security_updates":{"status":"enabled"}}}
@@ -18,6 +19,7 @@ JSON
 
 push protection は鍵を含む push をその場で拒否する。**AI は平気で鍵をベタ書きする**ので人間のレビューに頼らない。
 `dependabot_security_updates` は脆弱性への修正 PR で**既定 off**。パブリックリポジトリは全部無料。
+`delete_branch_on_merge` も**既定 off**。小さい PR を量産すると死んだブランチが溜まり、次にどれが生きているか分からなくなる。
 
 ## 3. `.tool-versions`
 
