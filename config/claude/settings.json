@@ -41,18 +41,10 @@
     "security-guidance@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true
   },
-  "language": "english",
+  "language": "Japanese",
   "voice": {
     "enabled": true,
     "mode": "hold"
-  },
-  "hooks": {
-    "UserPromptSubmit": [
-      { "hooks": [{ "type": "command", "command": "bash ~/.claude/hooks/english.sh" }] }
-    ],
-    "Stop": [
-      { "hooks": [{ "type": "command", "command": "bash ~/.claude/hooks/english.sh", "async": true }] }
-    ]
   },
   "remoteControlAtStartup": true,
   "voiceEnabled": true
