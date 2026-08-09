@@ -42,6 +42,9 @@ while read -r extension; do cursor --install-extension "$extension"; done < conf
 
 ## 手動設定（未自動化）
 
+- macOS の表示言語を English にする（OS / Slack / Chrome / GitHub の UI が英語になる）
+  - システム設定 → 一般 → 言語と地域 → 「優先する言語」で English を一番上へ → 再起動
+  - 日本語入力は キーボード → 入力ソース に日本語を残せば維持できる
 - `gh auth login` と SSH 鍵の生成/登録
 - Linear / Slack の MCP 接続（`end-session` / `daily-plan` skill が使う）
   - Linear: `claude mcp add --transport http linear https://mcp.linear.app/mcp` → Claude Code 内で `/mcp` から OAuth 認証
