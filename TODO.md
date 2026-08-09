@@ -1,4 +1,6 @@
 - 個人開発の始めるskill作る。セキュリティ周りも含めて。どういう流れでやるか。自分の知見を全部まとめる
+- grill-me
+    - https://zenn.dev/ryonakae/articles/8783c6b3ead2cb
 - claude-code-setup
 - Claudeに夜中に一つPRを作らせる
     - 朝イチでチェックするのを定期予定に
