@@ -2,13 +2,15 @@
 - grill-me
     - https://zenn.dev/ryonakae/articles/8783c6b3ead2cb
 - claude-code-setup
-- Claudeに夜中に一つPRを作らせる
+- ⭐️Claudeに夜中に一つPRを作らせる
     - 朝イチでチェックするのを定期予定に
     - routineとか活用
     - 小さめのPR
+    - Claude Code サブスク 隙間時間や寝ている時間も無駄にしたくない
 - 最近やったチケットとかタスクの内容から記事になりそうなトピックを自動で抽出するClaude Skills
 - ⭐️スマホから開発できるようにする
     - CLAUDE.mdやSkillも読んで開発できるように
+    - Claude Code サブスク 隙間時間や寝ている時間も無駄にしたくない
 - 日報の勉強内容をピックアップするskill
     - 何を勉強するか毎回悩むのをやめる
 - 過去の作業履歴からOSSや個人開発のアイデアを出させるskill
