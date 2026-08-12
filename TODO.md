@@ -7,6 +7,8 @@
     - routineとか活用
     - 小さめのPR
     - Claude Code サブスク 隙間時間や寝ている時間も無駄にしたくない
+- tilとknowledge-flowを検索して回答するようにしたい
+    - CLAUDE.md
 - 最近やったチケットとかタスクの内容から記事になりそうなトピックを自動で抽出するClaude Skills
 - ⭐️スマホから開発できるようにする
     - CLAUDE.mdやSkillも読んで開発できるように
