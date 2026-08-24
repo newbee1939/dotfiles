@@ -61,6 +61,22 @@ while read -r extension; do cursor --install-extension "$extension"; done < conf
   - 実体は Anthropic のクラウド側にあり、**このリポジトリからは反映できない**。CLI にサブコマンドが無く冪等にもできないため `bootstrap.sh` では自動化しない
   - 一覧・変更・削除は Web UI から: <https://claude.ai/code/routines>
 
+## terminal-browser / terminal-code
+
+ブラウザとエディタをターミナル内（Ghostty のペイン）で開き、画面移動を減らすためのツール。`bootstrap.sh` が入れる。
+
+```bash
+terminal-browser open <URL> --split right  # 右ペインにブラウザ
+tode <path>                                # VS Code ベースのエディタ
+tode --shortcut-setup                      # ターミナルとのショートカット衝突を解消
+```
+
+- Claude Code 用の skill は terminal-browser のインストーラが `~/.claude/skills/terminal-browser` に貼る（実体は `~/.local/share/terminal-browser`）。リポジトリでは `.gitignore` している
+- 更新は `terminal-browser upgrade` / `tode --upgrade`
+- **ログインが要るサイト**: Chrome とはプロファイルが別なので、初回だけ terminal-browser 内で手動ログインする。Cookie は独自のデータディレクトリに保存され、次回以降は保持される。拡張機能（1Password 等）はまだ未対応（roadmap）なのでパスワードは `cmd+v` で貼る。プロファイル取り込みは開発中（[PR #57](https://github.com/zenbu-labs/terminal-browser/pull/57)）
+- GitHub の操作は `gh` CLI が認証済みなのでそちらが速い。ブラウザは PR の差分を目で追うときに使う
+- ログイン済みタブは `terminal-browser action` でエージェントから操作できる = アカウント権限を渡すのと同じ。機微なサイトはログインしたまま放置しない
+
 ## 操作 Tips
 
 - **Claude Code のレスポンスをコピーしたい**: Zellij のスクロールモード (`Ctrl + S` で出入り) を使うと、入力欄に影響を与えず過去の出力を選択・コピーできる。
