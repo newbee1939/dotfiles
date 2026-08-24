@@ -1,0 +1,3 @@
+# terminal-browser のインストーラが ~/.claude/skills（= このディレクトリへの symlink）に
+# 公式 skill を貼るため、リポジトリ側には取り込まない
+config/claude/skills/terminal-browser

@@ -55,7 +55,7 @@ gh pr view <番号> --repo <owner/repo> \
 
 ## 4. 1 件ずつレビューする
 
-**着手時に必ず PR の URL を提示する**（`https://github.com/<owner>/<repo>/pull/<番号>`）。ブラウザで並べて見られるようにする。
+**着手時に必ず PR の URL を提示し、`terminal-browser open <URL> --split right` で隣のペインに開く**（`https://github.com/<owner>/<repo>/pull/<番号>`）。
 
 ### 下ごしらえ（全深度共通）
 

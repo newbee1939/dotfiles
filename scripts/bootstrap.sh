@@ -138,6 +138,24 @@ rm -f "$CLAUDE_SKILLS_TARGET_PATH"
 ln -s "$CLAUDE_SKILLS_SOURCE_PATH" "$CLAUDE_SKILLS_TARGET_PATH"
 echo "Linked Claude skills dir: $CLAUDE_SKILLS_TARGET_PATH"
 
+# terminal-browser / terminal-code (ターミナル内で完結するブラウザとエディタ)
+# skills dir の symlink 後に実行する。terminal-browser のインストーラが
+# ~/.claude/skills (= config/claude/skills) に公式 skill を貼るため（.gitignore 済み）。
+# 更新は `terminal-browser upgrade` / `tode --upgrade`。
+if ! command -v terminal-browser >/dev/null 2>&1; then
+  echo "Installing terminal-browser..."
+  curl -fsSl https://terminal-browser.sh/install | bash
+else
+  echo "terminal-browser is already installed."
+fi
+
+if ! command -v tode >/dev/null 2>&1; then
+  echo "Installing terminal-code..."
+  curl -fsSl https://tode.sh/install | bash
+else
+  echo "terminal-code is already installed."
+fi
+
 touch "$ZSHRC_PATH"
 if ! grep -F "$ZSHRC_MARKER" "$ZSHRC_PATH" >/dev/null 2>&1; then
   {
