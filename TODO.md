@@ -26,6 +26,7 @@
     - https://speakerdeck.com/tonkotsuboy_com/claude-code-parallel-2026-07-15
 - 障害発生時の対応手順のSkill
     - イメトレしておく
+    - 参考: https://qiita.com/kerun8080/items/1513709e2c320909b25c
 - 個人のTILを参照させる
     - setupのときにローカルにcloneさせるようにする？
 - daily-planのskillの実行もroutineで自動化？
