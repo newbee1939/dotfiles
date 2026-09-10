@@ -1,4 +1,5 @@
 - 個人開発の始めるskill作る。セキュリティ周りも含めて。どういう流れでやるか。自分の知見を全部まとめる
+- **dotfiles + ADR**: 設定の「なぜ」を残す。一番真似したい
 - Claude Code on the Webで開発する
     - dotfilesの内容も読ませたい
 - grill-me
@@ -145,3 +146,4 @@
             - 今日やったことと次回やることを簡潔に
         - すでに今日のやったことの投稿がある場合は追記する形に
     - //
+- Hugging Face, Open Router, OpenCode 組み込みたい
