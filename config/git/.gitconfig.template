@@ -3,5 +3,8 @@
   co = checkout
   br = branch
 
+[fetch]
+  prune = true
+
 [include]
   path = ~/.gitconfig.local
