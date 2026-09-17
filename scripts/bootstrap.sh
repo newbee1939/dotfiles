@@ -26,6 +26,8 @@ ZSHRC_MARKER="source \"$ZSHRC_EXTRA_PATH\""
 GITCONFIG_TEMPLATE_PATH="$REPO_ROOT/config/git/.gitconfig.template"
 GITCONFIG_PATH="$HOME/.gitconfig"
 GITCONFIG_LOCAL_PATH="$HOME/.gitconfig.local"
+GITATTRIBUTES_TEMPLATE_PATH="$REPO_ROOT/config/git/.gitattributes.global"
+GITATTRIBUTES_PATH="$HOME/.gitattributes.global"
 
 if ! command -v brew >/dev/null 2>&1; then
   echo "Homebrew is not installed. Install it first: https://brew.sh/"
@@ -169,6 +171,7 @@ else
 fi
 
 cp "$GITCONFIG_TEMPLATE_PATH" "$GITCONFIG_PATH"
+cp "$GITATTRIBUTES_TEMPLATE_PATH" "$GITATTRIBUTES_PATH"
 if [ ! -f "$GITCONFIG_LOCAL_PATH" ]; then
   echo "Creating $GITCONFIG_LOCAL_PATH"
   read -r -p "Git user.name: " git_user_name

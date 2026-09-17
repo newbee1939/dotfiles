@@ -2,6 +2,7 @@ brew "jq"
 brew "k9s"
 brew "gh"
 brew "git"
+brew "mergiraf" # 構文を理解する git マージドライバ（コンフリクトを自動解決）
 brew "starship" # ターミナルのカスタマイズ
 brew "zellij" # 次世代のターミナルマルチプレク（ターミナル分割）
 brew "zsh-autosuggestions" # 過去履歴からゴーストテキストで補完提案 (全受入: →/Ctrl+E, 1単語: Option+F)

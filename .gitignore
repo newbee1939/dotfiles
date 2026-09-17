@@ -1,3 +1,6 @@
 # terminal-browser のインストーラが ~/.claude/skills（= このディレクトリへの symlink）に
 # 公式 skill を貼るため、リポジトリ側には取り込まない
 config/claude/skills/terminal-browser
+
+# Claude Code が ~/.claude/skills 配下に同期する配布 skill（リポジトリ管理外）
+config/claude/skills/synced/
