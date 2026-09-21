@@ -61,6 +61,18 @@ while read -r extension; do cursor --install-extension "$extension"; done < conf
   - 実体は Anthropic のクラウド側にあり、**このリポジトリからは反映できない**。CLI にサブコマンドが無く冪等にもできないため `bootstrap.sh` では自動化しない
   - 一覧・変更・削除は Web UI から: <https://claude.ai/code/routines>
 
+## Claude Code on the Web（ブラウザ / スマホから開発）
+
+[claude.ai/code](https://claude.ai/code) の入力欄の上にある雲アイコン → 環境の歯車 → Setup script に以下を入れる。スマホ・デスクトップアプリのクラウドセッションにも効く。
+
+```bash
+git clone --depth 1 https://github.com/newbee1939/dotfiles ~/work/dotfiles
+~/work/dotfiles/scripts/bootstrap.sh  # Linux では CLAUDE.md と skills だけ貼る
+```
+
+- 結果は約 7 日キャッシュされる。dotfiles の更新をすぐ反映したいときは Setup script を少し書き換える
+- 参考: [Cloud environments](https://code.claude.com/docs/en/cloud-environments#setup-scripts)
+
 ## terminal-browser / terminal-code
 
 ブラウザとエディタをターミナル内（Ghostty のペイン）で開き、画面移動を減らすためのツール。`bootstrap.sh` が入れる。

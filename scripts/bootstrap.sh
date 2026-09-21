@@ -29,6 +29,15 @@ GITCONFIG_LOCAL_PATH="$HOME/.gitconfig.local"
 GITATTRIBUTES_TEMPLATE_PATH="$REPO_ROOT/config/git/.gitattributes.global"
 GITATTRIBUTES_PATH="$HOME/.gitattributes.global"
 
+# Claude Code on the Web (Ubuntu VM) 用: Mac 専用処理は動かないので Claude の設定だけ貼って終わる
+if [ "$(uname)" = "Linux" ]; then
+  mkdir -p "$HOME/.claude"
+  ln -sfn "$CLAUDE_CLAUDEMD_SOURCE_PATH" "$CLAUDE_CLAUDEMD_TARGET_PATH"
+  ln -sfn "$CLAUDE_SKILLS_SOURCE_PATH" "$CLAUDE_SKILLS_TARGET_PATH"
+  echo "Linked Claude CLAUDE.md and skills (Linux)."
+  exit 0
+fi
+
 if ! command -v brew >/dev/null 2>&1; then
   echo "Homebrew is not installed. Install it first: https://brew.sh/"
   exit 1
