@@ -58,6 +58,13 @@ while read -r extension; do cursor --install-extension "$extension"; done < conf
     - モデル: `haiku`
     - プロンプト: `ping!`
     - リポジトリ (`sources`): **指定しない**（clone した中身を読ませる必要がないため）
+- 同じ手順で、夜中に小さな PR を 1 本作らせる routine も作る
+  - 名前: `nightly-pr`
+  - cron: `0 18 * * *` … 毎晩 03:00 JST
+  - モデル: 指定しない（デフォルト）
+  - プロンプト: `sources の全リポジトリから ai ラベル付きの open issue を 1 つだけ選び、最小限の実装で PR を作成して（draft にしない）。該当なしなら何もしない`
+  - リポジトリ (`sources`): issue を拾わせたいリポジトリを**すべて指定**する（指定外のリポジトリは触れないため）
+  - 朝に PR を確認してマージする
   - 実体は Anthropic のクラウド側にあり、**このリポジトリからは反映できない**。CLI にサブコマンドが無く冪等にもできないため `bootstrap.sh` では自動化しない
   - 一覧・変更・削除は Web UI から: <https://claude.ai/code/routines>
 
