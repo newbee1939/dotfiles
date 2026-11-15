@@ -11,6 +11,9 @@ ZELLIJ_TARGET_PATH_S4="$HOME/.config/zellij/layouts/s4.kdl"
 # Ghostty設定の追加
 GHOSTTY_SOURCE_PATH="$REPO_ROOT/config/ghostty/config"
 GHOSTTY_TARGET_PATH="$HOME/.config/ghostty/config"
+# SSH 設定（鍵と known_hosts は管理しない）
+SSH_CONFIG_SOURCE_PATH="$REPO_ROOT/config/ssh/config"
+SSH_CONFIG_TARGET_PATH="$HOME/.ssh/config"
 # Claude Code 設定の追加
 CLAUDE_CLAUDEMD_SOURCE_PATH="$REPO_ROOT/config/claude/CLAUDE.md"
 CLAUDE_CLAUDEMD_TARGET_PATH="$HOME/.claude/CLAUDE.md"
@@ -103,6 +106,18 @@ rm -f "$GHOSTTY_TARGET_PATH"
 mkdir -p "$(dirname "$GHOSTTY_TARGET_PATH")"
 ln -s "$GHOSTTY_SOURCE_PATH" "$GHOSTTY_TARGET_PATH"
 echo "Linked Ghostty config: $GHOSTTY_TARGET_PATH"
+
+# SSH
+mkdir -p "$HOME/.ssh"
+chmod 700 "$HOME/.ssh"
+if [ -e "$SSH_CONFIG_TARGET_PATH" ] && [ ! -L "$SSH_CONFIG_TARGET_PATH" ]; then
+  backup_path="$SSH_CONFIG_TARGET_PATH.bak.$(date +%Y%m%d%H%M%S)"
+  mv "$SSH_CONFIG_TARGET_PATH" "$backup_path"
+  echo "Backed up existing SSH config: $backup_path"
+fi
+rm -f "$SSH_CONFIG_TARGET_PATH"
+ln -s "$SSH_CONFIG_SOURCE_PATH" "$SSH_CONFIG_TARGET_PATH"
+echo "Linked SSH config: $SSH_CONFIG_TARGET_PATH"
 
 # Claude Code: CLAUDE.md
 mkdir -p "$HOME/.claude"
